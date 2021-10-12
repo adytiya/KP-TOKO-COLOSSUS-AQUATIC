@@ -1,5 +1,6 @@
 <?php
 include 'koneksi.php';
+
 if (isset($_POST['tambah'])) {
 
     $data = $_POST['cari'];

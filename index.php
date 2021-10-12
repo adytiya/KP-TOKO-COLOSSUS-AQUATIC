@@ -66,7 +66,7 @@ include 'view.php';
 
 
             </div>
-            <h3 name='modal'> Pemasukan Uang (Modal) = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
+            <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
 
             <h3 name='modal'> Pengeluaran Uang (Modal) = Rp. <?= number_format($modal, 0, ',', '.'); ?></h3>
 

@@ -10,6 +10,7 @@ include 'auto-kode.php';
 
     <!-- Page Wrapper -->
     <?php
+
     require 'koneksi.php';
     require('sidebar.php'); ?>
     <!-- Main Content -->

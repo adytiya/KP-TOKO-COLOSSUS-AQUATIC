@@ -1,12 +1,14 @@
 <?php
 require 'cek-sesi.php';
 include 'head.php';
+include 'view.php';
 ?>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <?php
+    require 'alret.php';
     require 'koneksi.php';
     require('sidebar.php'); ?>
     <!-- Main Content -->
@@ -18,54 +20,56 @@ include 'head.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h2>Data Laporan</h2>
-            <br>
-            <br>
-            <br>
+            <div class="card-header py-3">
+                <h2 class="text-center">Data Laporan</h2>
+            </div>
 
-            <form method="POST" action="tambah-stok.php">
+            <div class="card-header py-3">
+                <a href="#" class="btn btn-primary" onclick="sweetAlert()"> cetak laporan</a>
+            </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID_transaksi</th>
+                                <th>Nama Ikan</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                                <th>Tanggal</th>
+                                <th>Admin</th>
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            $data = mysqli_query($koneksi, "SELECT * FROM nota ");
+                            while ($user_data = mysqli_fetch_array($data)) {
+                            ?>
                                 <tr>
-                                    <th>No</th>
-                                    <th>ID_transaksi</th>
-                                    <th>Nama Ikan</th>
-                                    <th>Jumlah</th>
-                                    <th>Total</th>
-                                    <th>Tanggal</th>
-                                    <th>Admin</th>
-
-
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $user_data['id_trs']; ?></td>
+                                    <td><?php echo $user_data['nama_ikan']; ?></td>
+                                    <td><?php echo $user_data['jumlah']; ?></td>
+                                    <td><?php echo $user_data['total']; ?></td>
+                                    <td><?php echo $user_data['tanggal']; ?></td>
+                                    <td><?php echo $user_data['admin']; ?></td>
                                 </tr>
-                            </thead>
 
-                            <tbody>
-                                <?php
-                                $no = 1;
-                                $data = mysqli_query($koneksi, "SELECT * FROM nota ");
-                                while ($user_data = mysqli_fetch_array($data)) {
-                                ?>
-                                    <tr>
-                                        <td><?php echo $no++; ?></td>
-                                        <td><?php echo $user_data['id_trs']; ?></td>
-                                        <td><?php echo $user_data['nama_ikan']; ?></td>
-                                        <td><?php echo $user_data['jumlah']; ?></td>
-                                        <td><?php echo $user_data['total']; ?></td>
-                                        <td><?php echo $user_data['tanggal']; ?></td>
-                                        <td><?php echo $user_data['admin']; ?></td>
-                                    </tr>
-
-                            </tbody>
-                        <?php
-                                }
-                        ?>
-                        </table>
-                    </div>
+                        </tbody>
+                    <?php
+                            }
+                    ?>
+                    </table>
+                    <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
                 </div>
-            </form>
+            </div>
+
         </div>
     </div>
 
