@@ -24,7 +24,7 @@ if (isset($_POST['input'])) {
         $sqli = "INSERT INTO nota VALUES ('','$id_trs[$x]','$id_ikan[$x]','$nama_ikan[$x]','$jum_brg[$x]','$tot_brg[$x]','$tgl[$x]','$admin[$x]')";
         $row = mysqli_query($koneksi, $sqli);
     }
-    $sql = mysqli_query($koneksi, "INSERT INTO  transaksi  VALUES('$id_trx','$tanggal','$jumlah','$total','$bayar','$kembali','$nama')");
+    $sql = mysqli_query($koneksi, "INSERT INTO  transaksi  VALUES('$id_trx','$tanggal','$jumlah','$total','$bayar','$kembali','$nama','$jml')");
     if ($sql) {
 
         $delete = "DELETE FROM jual";

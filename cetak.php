@@ -14,63 +14,89 @@ include 'koneksi.php';
 
     <center>
 
-        <h2>DATA LAPORAN BARANG</h2>
+        <h2>Struk Bukti Pembelian</h2>
 
     </center>
+    <table type="hidden" align="center" cellspacing='1' cellpadding="8" sstyle='width:600px; font-size:8pt; font-family:Serif;'>
+        <tbody>
+            <?php
+            $data = mysqli_query($koneksi, "SELECT * FROM toko");
+            while ($user_data = mysqli_fetch_array($data)) {
+            ?>
+                <tr align="left">
+                    <th><?php echo $user_data['nama_toko'] ?> </th>
+                </tr>
+                <tr align="left">
+                    <th><?php echo $user_data['alamat'] ?> </th>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
 
-    <?php
-    include 'koneksi.php';
-    ?>
+    </table>
 
-    <table align='center' cellspacing='1' style='width:300px; font-size:15pt; font-family:calibri;  border-collapse: collapse;' border='1'>
+    <table align="center" cellspacing='1' cellpadding="8" style='width:600px; font-size:15pt; font-family:Serif;' border="1">
         <thead>
             <tr align='center'>
                 <td width='1%'>No</td>
                 <td width='15%'>Nama Ikan</td>
                 <td width='4%'>Qty</td>
-                <td width='20%'>Harga</td>
+                <td width='15%'>Harga</td>
             </tr>
         </thead>
         <tbody>
             <?php
             $no = 1;
-            $sql = "SELECT*FROM transaksi ORDER BY jumlah  DESC LIMIT 1";
+            $sql = "SELECT*FROM transaksi ORDER BY jml_jenis  DESC LIMIT 1";
             $result = $koneksi->query($sql);
             $row = $result->fetch_assoc();
-            $jumlah = $row['jumlah'];
+            $jumlah = $row['jml_jenis'];
             $data = mysqli_query($koneksi, "SELECT * FROM nota ORDER BY id_trs DESC LIMIT $jumlah");
             while ($user_data = mysqli_fetch_array($data)) {
             ?>
                 <tr align='left'>
                     <th align='center'><?php echo $no++ ?></th>
-                    <th><?php echo $user_data['nama_ikan'] ?></th>
+                    <th align='center'><?php echo $user_data['nama_ikan'] ?></th>
                     <th align='center'><?php echo $user_data['jumlah'] ?></th>
-                    <th>Rp. <?= number_format($user_data['total'], 0, ',', '.'); ?> </th>
+                    <th align='right'>Rp. <?= number_format($user_data['total'], 0, ',', '.');  ?> </th>
+                </tr>
+            <?php
+            }
+            ?>
+            <?php
+            $sql = "SELECT*FROM transaksi ORDER BY jumlah  DESC LIMIT 1";
+            $result = $koneksi->query($sql);
+            $row = $result->fetch_assoc();
+            ?>
+            <tr>
+                <th align="left" colspan="2">Jumlah Ikan</th>
+                <th><?php echo $row['jumlah'] ?></th>
+            </tr>
+            <?php
+            $data1 = mysqli_query($koneksi, "SELECT * FROM transaksi ORDER BY id_trx DESC LIMIT 1");
+            while ($user_data1 = mysqli_fetch_array($data1)) {
+            ?>
+                <tr width='15%'>
+                    <th align="left" colspan="3">Total</th>
+                    <th align="right">Rp. <?= number_format($user_data1['total'], 0, ',', '.'); ?></th>
+                </tr>
+                <tr>
+                    <th align="left" colspan="3">Bayar</th>
+                    <th align="right">Rp. <?= number_format($user_data1['bayar'], 0, ',', '.'); ?> </th>
+                </tr>
+                <tr>
+                    <th align="left" colspan="3">Kembalian</th>
+                    <th align="right">Rp. <?= number_format($user_data1['total'], 0, ',', '.'); ?> </th>
                 </tr>
             <?php
             }
             ?>
         </tbody>
     </table>
-    <table>
-        <?php
-        $data1 = mysqli_query($koneksi, "SELECT * FROM transaksi ");
-        while ($user_data1 = mysqli_fetch_array($data1)) {
-        ?>
-
-            <tbody>
-                <tr>
-                    <th><?php echo $user_data1['total'] ?> </th>
-                    <th><?php echo $user_data1['bayar'] ?> </th>
-                    <th><?php echo $user_data1['kembali'] ?> </th>
-                </tr>
-
-            </tbody>
-        <?php
-        }
-        ?>
-    </table>
-
 </body>
+<script>
+    window.print();
+</script>
 
 </html>
