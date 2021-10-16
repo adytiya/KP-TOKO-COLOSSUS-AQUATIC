@@ -25,7 +25,7 @@ include 'view.php';
             </div>
 
             <div class="card-header py-3">
-                <a href="#" class="btn btn-primary" onclick="sweetAlert()"> cetak laporan</a>
+                <a href="cetak.php" class="btn btn-primary"> cetak laporan</a>
             </div>
 
             <div class="card-body">
