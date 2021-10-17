@@ -1,3 +1,4 @@
+<!--halaman kosong-->
 <?php
 
 include 'head.php';
@@ -9,31 +10,31 @@ include 'head.php';
     <?php
     require 'koneksi.php';
     require('sidebar.php'); ?>
-            <!-- Main Content -->
-            <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-                <!-- Topbar -->
-                <?php require('navbar.php'); ?>
-                <!-- End of Topbar -->
+        <!-- Topbar -->
+        <?php require('navbar.php'); ?>
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                 <div class="container-fluid">
-              	 
-                
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
 
-                </div>
-                <!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <?php require 'footer.php' ?>
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <?php require 'footer.php' ?>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

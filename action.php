@@ -1,6 +1,6 @@
 <?php
 require 'koneksi.php';
-
+//mencari data yang sesuai dengan yang diketik
 
 if(isset($_POST['query'])){
 	$inpText=$_POST['query'];
@@ -15,5 +15,3 @@ else{
 	echo"<p class='list-group-item border-1'>tidak ada</p>";
 }
 }
-
-?>
