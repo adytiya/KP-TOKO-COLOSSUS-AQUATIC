@@ -1,13 +1,13 @@
 <?php
 include 'koneksi.php';
-
+include 'cek-sesi.php';
 
 ?>
 <html>
 
 
 <head>
-
+    <title>Colossus Aquatic</title>
 </head>
 
 <body>
@@ -20,6 +20,7 @@ include 'koneksi.php';
     <table type="hidden" align="center" cellspacing='1' cellpadding="8" sstyle='width:600px; font-size:8pt; font-family:Serif;'>
         <tbody>
             <?php
+
             $data = mysqli_query($koneksi, "SELECT * FROM toko");
             while ($user_data = mysqli_fetch_array($data)) {
             ?>
@@ -28,6 +29,12 @@ include 'koneksi.php';
                 </tr>
                 <tr align="left">
                     <th><?php echo $user_data['alamat'] ?> </th>
+                </tr>
+                <tr align="left">
+                    <th>Tanggal : <?php echo date("j F Y, G:i"); ?></th>
+                </tr>
+                <tr align="left">
+                    <th>Kasir : <?php echo $_SESSION['nama']; ?></th>
                 </tr>
             <?php
             }
@@ -57,7 +64,7 @@ include 'koneksi.php';
             ?>
                 <tr align='left'>
                     <th align='center'><?php echo $no++ ?></th>
-                    <th align='center'><?php echo $user_data['nama_ikan'] ?></th>
+                    <th align='left'><?php echo $user_data['nama_ikan'] ?></th>
                     <th align='center'><?php echo $user_data['jumlah'] ?></th>
                     <th align='right'>Rp. <?= number_format($user_data['total'], 0, ',', '.');  ?> </th>
                 </tr>
@@ -87,7 +94,7 @@ include 'koneksi.php';
                 </tr>
                 <tr>
                     <th align="left" colspan="3">Kembalian</th>
-                    <th align="right">Rp. <?= number_format($user_data1['total'], 0, ',', '.'); ?> </th>
+                    <th align="right">Rp. <?= number_format($user_data1['kembali'], 0, ',', '.'); ?> </th>
                 </tr>
             <?php
             }
@@ -97,6 +104,7 @@ include 'koneksi.php';
 </body>
 <script>
     window.print();
+    window.close();
 </script>
 
 </html>

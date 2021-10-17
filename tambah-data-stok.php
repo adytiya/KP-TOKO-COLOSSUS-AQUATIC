@@ -9,78 +9,86 @@ include 'head.php';
     <?php
     require 'koneksi.php';
     require('sidebar.php'); ?>
-            <!-- Main Content -->
-            <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-                <!-- Topbar -->
-                <?php require('navbar.php'); ?>
-                <!-- End of Topbar -->
+        <!-- Topbar -->
+        <?php require('navbar.php'); ?>
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                 <div class="container-fluid">
-              	 
-                
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">From Tambah Stok Ikan </h1>
-
-                            <form method="POST" action="tambah-stok.php">
-                            <div class="row mb-3">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="id" name="id">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Nama</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nama_ikan" name="nama_ikan">
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Harga Beli</label>
-                                <div class="col-sm-10">
-                                <input type="varchar" class="form-control" id="harga_beli" name="harga_beli">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Harga Jual</label>
-                                <div class="col-sm-10">
-                                <input type="varchar" class="form-control" id="harga_jual" name="harga_jual">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Stok</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="stok" name="stok">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Tanggal Input</label>
-                                <div class="col-sm-10">
-                                <input type="date" class="form-control" id="tanggal_input" name="tanggal_input">
-                                </div>
-                            </div>
-                            <a href="ikan.php"class="btn btn-primary">
-                                 Kembali
-                            </a>
-                            <button type="submit" class="btn btn-primary">Tambah Data</button>
-                            </form>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
 
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">From Tambah Stok Ikan </h1>
 
+            <form method="POST" action="tambah-stok.php">
+                <?php
+                $code = "SELECT COUNT(id_ikan) AS maxid FROM stk_ikn";
+                $sql = mysqli_query($koneksi, $code);
+                $data = mysqli_fetch_array($sql);
+                $kode = $data['maxid'];
+                $no =  1 + $kode;
+
+                ?>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id" name="id" value="<?php echo $no; ?>">
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_ikan" name="nama_ikan">
+                    </div>
+                </div>
 
-            </div>
-            <!-- End of Main Content -->
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Harga Beli</label>
+                    <div class="col-sm-10">
+                        <input type="varchar" class="form-control" id="harga_beli" name="harga_beli">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Harga Jual</label>
+                    <div class="col-sm-10">
+                        <input type="varchar" class="form-control" id="harga_jual" name="harga_jual">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Stok</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="stok" name="stok">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Tanggal Input</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="tanggal_input" name="tanggal_input">
+                    </div>
+                </div>
+                <a href="ikan.php" class="btn btn-primary">
+                    Kembali
+                </a>
+                <button type="submit" class="btn btn-primary">Tambah Data</button>
+            </form>
 
-            <!-- Footer -->
-            <?php require 'footer.php' ?>
-            <!-- End of Footer -->
+
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <?php require 'footer.php' ?>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

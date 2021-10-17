@@ -178,10 +178,9 @@ include 'auto-kode.php';
                                 <input type="hidden" name="kode" value="<?= $kodeauto; ?>">
                                 <input type="hidden" name="total" value="<?= $total_semua; ?>">
                                 <input type="hidden" class="form-control" onkeyup="kembali();" id="balik" name="balik">
-                                <button type="hidden" name="input" class="btn btn-primary col-sm-1    ">Submit</button>
+                                <button type="hidden" name="input" class="btn btn-primary col-sm-1">Submit</button>
                                 <input type="hidden" name="jml" value="<?php echo $jml; ?>">
                                 <button class="btn btn-danger" name="reset" id="reset">RESET</button>
-
 
                             </div>
                         </form>
@@ -193,6 +192,7 @@ include 'auto-kode.php';
 
                             <div class="col-mt-6">
                                 <button type="text" name="lharian" class="btn btn-primary col-sm-13 col-mb-1">laporan Harian </button>
+                                <a class="btn btn-success" href="#" onclick="window.open('cetak.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">Print</a>
                             </div>
                         </div>
 
