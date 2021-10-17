@@ -57,7 +57,24 @@ include 'head.php';
                 }
         ?>
         </table>
-        <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
+        <?php
+
+        $tgl = date("j F Y");
+        $data = mysqli_query($koneksi, "SELECT SUM(total)as total  FROM nota WHERE tanggal LIKE '%$tgl%'");
+        while ($user_data = mysqli_fetch_array($data)) { ?>
+            <h5 name='modal'> Pemasukan Per tanggal <?php echo $tgl; ?> = Rp. <?= number_format($user_data['total'], 0, ',', '.'); ?></h5>
+        <?php
+        }
+        ?>
+        <?php
+
+        $tgl = date("j F Y");
+        $data = mysqli_query($koneksi, "SELECT SUM(jumlah)as jumlah  FROM nota WHERE tanggal LIKE '%$tgl%'");
+        while ($user_data = mysqli_fetch_array($data)) { ?>
+            <h5 name='modal'> Jumlah Ikan Yang Terjual Per tanggal <?php echo $tgl; ?> = <?php echo $user_data['jumlah'] ?> Ekor</h5>
+        <?php
+        }
+        ?>
     </div>
 </body>
 <script>

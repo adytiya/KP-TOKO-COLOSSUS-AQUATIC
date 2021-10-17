@@ -191,8 +191,8 @@ include 'auto-kode.php';
                             </div>
 
                             <div class="col-mt-6">
-                                <button type="text" name="lharian" class="btn btn-primary col-sm-13 col-mb-1">laporan Harian </button>
-                                <a class="btn btn-success" href="#" onclick="window.open('cetak.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">Print</a>
+
+                                <a class="btn btn-success" href="#" onclick="window.open('cetak.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">Print Nota</a>
                             </div>
                         </div>
 

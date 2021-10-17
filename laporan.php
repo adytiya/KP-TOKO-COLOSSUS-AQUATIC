@@ -25,7 +25,7 @@ include 'view.php';
             </div>
 
             <div class="card-header py-3">
-                <a href="cetak-laporan.php" class="btn btn-primary"> cetak laporan</a>
+                <a class="btn btn-success" href="#" onclick="window.open('cetak-laporan.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">laporan harian </a>
             </div>
 
             <div class="card-body">
