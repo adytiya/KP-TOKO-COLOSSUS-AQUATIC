@@ -25,7 +25,7 @@ include 'view.php';
             </div>
 
             <div class="card-header py-3">
-                <a href="cetak.php" class="btn btn-primary"> cetak laporan</a>
+                <a href="cetak-laporan.php" class="btn btn-primary"> cetak laporan</a>
             </div>
 
             <div class="card-body">
@@ -48,6 +48,7 @@ include 'view.php';
                         <tbody>
                             <?php
                             $no = 1;
+
                             $data = mysqli_query($koneksi, "SELECT * FROM nota ");
                             while ($user_data = mysqli_fetch_array($data)) {
                             ?>
