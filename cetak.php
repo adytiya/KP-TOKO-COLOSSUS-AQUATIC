@@ -55,7 +55,7 @@ include 'cek-sesi.php';
         <tbody>
             <?php
             $no = 1;
-            $sql = "SELECT*FROM transaksi ORDER BY jml_jenis  DESC LIMIT 1";
+            $sql = "SELECT*FROM transaksi ORDER BY id_trx  DESC LIMIT 1";
             $result = $koneksi->query($sql);
             $row = $result->fetch_assoc();
             $jumlah = $row['jml_jenis'];
@@ -72,7 +72,7 @@ include 'cek-sesi.php';
             }
             ?>
             <?php
-            $sql = "SELECT*FROM transaksi ORDER BY jumlah  DESC LIMIT 1";
+            $sql = "SELECT*FROM transaksi ORDER BY id_trx  DESC LIMIT 1";
             $result = $koneksi->query($sql);
             $row = $result->fetch_assoc();
             ?>

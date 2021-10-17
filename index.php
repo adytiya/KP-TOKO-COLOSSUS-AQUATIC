@@ -64,13 +64,14 @@ include 'view.php';
                     </div>
                 </div>
 
-
             </div>
-            <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
-
-            <h3 name='modal'> Pengeluaran Uang (Modal) = Rp. <?= number_format($modal, 0, ',', '.'); ?></h3>
 
 
+            <h3> Pemasukan keseluruhan = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
+
+            <h3> Pengeluaran Uang (Modal) = Rp. <?= number_format($modal, 0, ',', '.'); ?></h3>
+
+            <h3>Pemasukan Hari Ini = Rp.<?= number_format($harian, 0, ',', '.'); ?> </h3>
         </div>
     </div>
 

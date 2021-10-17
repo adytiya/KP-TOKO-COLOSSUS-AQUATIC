@@ -1,4 +1,5 @@
 <?php
+//kode yang bertambah secara otomatis 
 include 'koneksi.php';
 $code = "SELECT MAX(id_trx) AS maxid FROM transaksi";
 $sql = mysqli_query($koneksi, $code);

@@ -8,9 +8,10 @@ include 'view.php';
 
     <!-- Page Wrapper -->
     <?php
-    require 'alret.php';
+
     require 'koneksi.php';
-    require('sidebar.php'); ?>
+    require('sidebar.php');
+    ?>
     <!-- Main Content -->
     <div id="content">
 
