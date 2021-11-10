@@ -58,7 +58,7 @@ include 'view.php';
                                     <td><?php echo $user_data['id_trs']; ?></td>
                                     <td><?php echo $user_data['nama_ikan']; ?></td>
                                     <td><?php echo $user_data['jumlah']; ?></td>
-                                    <td><?php echo $user_data['total']; ?></td>
+                                    <td>Rp. <?= number_format($user_data['total'], 0, ',', '.'); ?></td>
                                     <td><?php echo $user_data['tanggal']; ?></td>
                                     <td><?php echo $user_data['admin']; ?></td>
                                 </tr>
@@ -72,12 +72,11 @@ include 'view.php';
                 </div>
             </div>
 
+
+
+
         </div>
-    </div>
-
-
-    </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
     </div>
     <!-- End of Main Content -->

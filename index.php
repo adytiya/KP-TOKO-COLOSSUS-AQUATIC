@@ -27,15 +27,16 @@ include 'view.php';
             <div class="row mb-2">
 
             </div>
-            <br>
+
+
 
             <div class="row mb-2">
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Nama Ikan</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Jenis Ikan yang ada</div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_nm; ?></div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_nm; ?> Jenis</div>
                             </div>
                         </div>
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='ikan.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
@@ -43,10 +44,10 @@ include 'view.php';
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Yang Barang</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan Keseluruhan </div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_stok; ?></div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_stok; ?> Ekor </div>
                             </div>
                         </div>
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='ikan.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
@@ -54,10 +55,10 @@ include 'view.php';
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Yang Terjual</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan Yang Terjual</div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $terjual; ?></div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $terjual; ?> Ekor</div>
                             </div>
                         </div>
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='laporan.php'>Table Laporan <i class='fa fa-arrow-right'></i></a></div>
@@ -72,12 +73,12 @@ include 'view.php';
             <h3> Pengeluaran Uang (Modal) = Rp. <?= number_format($modal, 0, ',', '.'); ?></h3>
 
             <h3>Pemasukan Hari Ini = Rp.<?= number_format($harian, 0, ',', '.'); ?> </h3>
+
+
+
+
         </div>
-    </div>
-
-
-    </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
     </div>
     <!-- End of Main Content -->
@@ -99,6 +100,7 @@ include 'view.php';
 
     <!-- Logout Modal-->
     <?php require 'logout-modal.php' ?>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -109,6 +111,12 @@ include 'view.php';
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
