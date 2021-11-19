@@ -2,6 +2,7 @@
 require 'cek-sesi.php';
 include 'head.php';
 include 'view.php';
+
 ?>
 
 <body id="page-top">
@@ -21,46 +22,84 @@ include 'view.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Data Stok Ikan</h1>
+            <?php
+            //mengenalkan variabel teks
+            $sqlperiode = "";
+            $awaltgl = "";
+            $akhirtgl = "";
+            $tglawal = "";
+            $tglakhir = "";
 
+            if (isset($_POST['btntampilkan'])) {
+                $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
+                $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
+                $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+            } else {
+                $tglawal = "01-" . date('m-Y');
+                $tglakhir = date('d-m-Y');
+                $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+            }
+            ?>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2 class="text-center">Data Laporan</h2>
+                    <h4>Periode tanggal <b><?php echo $tglawal; ?></b> s/d <b><?php echo $tglakhir; ?></b></h4>
                 </div>
-                <div class="card-header py-3">
-                    <a class="btn btn-success" href="#" onclick="window.open('cetak-laporan.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">laporan harian </a>
-                </div>
+
                 <div class="card-body">
+
+                    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" target="_self">
+
+                        <div class="row py-3">
+                            <div class="col-lg-3">
+                                <input name="txttglawal" type="date" class="form-control" value=<?php echo $tglawal; ?> size="10">
+                            </div>
+                            <div class="col-lg-3">
+                                <input name="txttglakhir" type="date" class="form-control" value="<?php echo $tglakhir; ?>">
+                            </div>
+                            <div>
+                                <div class="col-lg-2">
+                                    <input type="submit" name="btntampilkan" class="btn btn-success" value="tampilkan">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>ID_transaksi</th>
-                                    <th>Nama Ikan</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
+                                    <th>Bayar</th>
+                                    <th>kembalian</th>
                                     <th>Tanggal</th>
                                     <th>Admin</th>
+                                    <th>test</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php
-                                $no = 1;
 
-                                $data = mysqli_query($koneksi, "SELECT * FROM nota ");
+                                $SQL = "SELECT * FROM transaksi $sqlperiode";
+                                $data = mysqli_query($koneksi, $SQL);
+                                $no = 1;
                                 while ($user_data = mysqli_fetch_array($data)) {
                                 ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $user_data['id_trs']; ?></td>
-                                        <td><?php echo $user_data['nama_ikan']; ?></td>
+                                        <td><?php echo $user_data['id_trx']; ?></td>
                                         <td><?php echo $user_data['jumlah']; ?></td>
                                         <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
+                                        <td>Rp.<?= number_format($user_data['bayar'], 0, ',', '.'); ?></td>
+                                        <td>Rp.<?= number_format($user_data['kembali'], 0, ',', '.'); ?></td>
                                         <td><?php echo $user_data['tanggal']; ?></td>
                                         <td><?php echo $user_data['admin']; ?></td>
+                                        <td><?php echo $userdata ?></td>
                                     </tr>
 
 
@@ -69,7 +108,7 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-                        <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
+
                     </div>
                 </div>
             </div>

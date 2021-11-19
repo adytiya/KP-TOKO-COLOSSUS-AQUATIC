@@ -147,13 +147,13 @@ include 'auto-kode.php';
                             ?>
 
 
-                                <input type="textz" name="id_ikan[]" value="<?php echo $rows['id_ikan']; ?>">
-                                <input type="textz" name="id_trs[]" value="<?php echo $kodeauto ?>">
-                                <input type="textz" name="nama_ikan[]" value="<?php echo $rows['nama_ikan'] ?>">
-                                <input type="textz" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
-                                <input type="textz" name="total_brg[]" value="<?= $rows['total']; ?>">
-                                <input type="textz" name="tanggal[]" value="<?php echo date("j F Y, G:i"); ?> ">
-                                <input type="textz" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
+                                <input type="hidden" name="id_ikan[]" value="<?php echo $rows['id_ikan']; ?>">
+                                <input type="hidden" name="id_trs[]" value="<?php echo $kodeauto ?>">
+                                <input type="hidden" name="nama_ikan[]" value="<?php echo $rows['nama_ikan'] ?>">
+                                <input type="hidden" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
+                                <input type="hidden" name="total_brg[]" value="<?= $rows['total']; ?>">
+                                <input type="hidden" name="tanggal[]" value="<?php echo date("j F Y, G:i"); ?> ">
+                                <input type="hidden" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
 
 
                             <?php
