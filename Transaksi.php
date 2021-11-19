@@ -73,7 +73,7 @@ include 'auto-kode.php';
                         <div class="row mb-2">
                             <label class="col-lg-3 col-sm-2">Tanggal</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly="readonly" class="form-control" id="tanggal" name="tanggal" value="<?php echo date("j F Y, G:i"); ?>   ">
+                                <input type="text" readonly="readonly" class="form-control" id="tanggal" name="tanggal" value="<?php echo date("Y-m-d"); ?>   ">
                             </div>
                         </div>
                         <!--tabel tranksaksi-->

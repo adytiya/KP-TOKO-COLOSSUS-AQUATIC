@@ -78,7 +78,6 @@ include 'view.php';
                                     <th>kembalian</th>
                                     <th>Tanggal</th>
                                     <th>Admin</th>
-                                    <th>test</th>
                                 </tr>
                             </thead>
 
@@ -99,7 +98,6 @@ include 'view.php';
                                         <td>Rp.<?= number_format($user_data['kembali'], 0, ',', '.'); ?></td>
                                         <td><?php echo $user_data['tanggal']; ?></td>
                                         <td><?php echo $user_data['admin']; ?></td>
-                                        <td><?php echo $userdata ?></td>
                                     </tr>
 
 
@@ -108,7 +106,7 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-
+                        <input type="submit" class="btn btn-success" value="Print laporan">
                     </div>
                 </div>
             </div>
