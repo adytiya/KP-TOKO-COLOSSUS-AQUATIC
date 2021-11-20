@@ -7,7 +7,7 @@ if (isset($_POST['input'])) {
     $total = $_POST['total'];
     $bayar = $_POST['bayar'];
     $jumlah = $_POST['jumlah'];
-    $tanggal = date("j F Y, G:i");
+    $tanggal = date("Y-m-d");
     $kembali = $_POST['balik'];
     $nama = $_SESSION['nama'];
 

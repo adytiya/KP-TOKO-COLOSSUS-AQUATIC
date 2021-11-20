@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2021 at 03:05 PM
+-- Generation Time: Nov 20, 2021 at 10:53 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -49,7 +49,7 @@ CREATE TABLE `nota` (
   `nama_ikan` varchar(225) NOT NULL,
   `jumlah` varchar(225) NOT NULL,
   `total` varchar(225) NOT NULL,
-  `tanggal` varchar(225) NOT NULL,
+  `tanggal` date NOT NULL,
   `admin` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -58,16 +58,32 @@ CREATE TABLE `nota` (
 --
 
 INSERT INTO `nota` (`id_nota`, `id_trs`, `id_ikan`, `nama_ikan`, `jumlah`, `total`, `tanggal`, `admin`) VALUES
-(32, 'TRX001', '5', 'Chana Yellow Setarum', '1', '40000', '17 October 2021, 17:59 ', 'adit'),
-(33, 'TRX001', '1', 'Oscar Tiger', '1', '26000', '17 October 2021, 17:59 ', 'adit'),
-(34, 'TRX002', '4', 'Arwana', '1', '2100000', '17 October 2021, 18:15 ', 'adit'),
-(35, 'TRX002', '1', 'Oscar Tiger', '10', '260000', '17 October 2021, 18:15 ', 'adit'),
-(36, 'TRX002', '2', 'Discus', '1', '20000', '17 October 2021, 18:15 ', 'adit'),
-(37, 'TRX002', '7', 'Mas Koki', '10', '70000', '17 October 2021, 18:15 ', 'adit'),
-(38, 'TRX003', '11', 'Oscar Tiger Albino', '5', '100000', '18 October 2021, 19:31 ', 'adit'),
-(39, 'TRX003', '1', 'Oscar Tiger', '5', '130000', '18 October 2021, 19:31 ', 'adit'),
-(40, 'TRX003', '12', 'Polypterus endlicher', '10', '200000', '18 October 2021, 19:31 ', 'adit'),
-(41, 'TRX003', '13', 'Polypterus Lapradei', '2', '100000', '18 October 2021, 19:31 ', 'adit');
+(32, 'TRX001', '5', 'Chana Yellow Setarum', '1', '40000', '2021-11-01', 'adit'),
+(33, 'TRX001', '1', 'Oscar Tiger', '1', '26000', '2021-11-01', 'adit'),
+(34, 'TRX002', '4', 'Arwana', '1', '2100000', '2021-11-02', 'adit'),
+(35, 'TRX002', '1', 'Oscar Tiger', '10', '260000', '2021-11-02', 'adit'),
+(36, 'TRX002', '2', 'Discus', '1', '20000', '2021-11-02', 'adit'),
+(37, 'TRX002', '7', 'Mas Koki', '10', '70000', '2021-11-02', 'adit'),
+(38, 'TRX003', '11', 'Oscar Tiger Albino', '5', '100000', '2021-11-03', 'adit'),
+(39, 'TRX003', '1', 'Oscar Tiger', '5', '130000', '2021-11-03', 'adit'),
+(40, 'TRX003', '12', 'Polypterus endlicher', '10', '200000', '2021-11-03', 'adit'),
+(41, 'TRX003', '13', 'Polypterus Lapradei', '2', '100000', '2021-11-03', 'adit'),
+(42, 'TRX004', '1', 'Oscar Tiger', '1', '26000', '2021-11-03', 'adit'),
+(43, 'TRX004', '10', 'Sapu-Sapu', '1', '5000', '2021-11-03', 'adit'),
+(44, 'TRX004', '4', 'Arwana', '1', '2100000', '2021-11-03', 'adit'),
+(45, 'TRX005', '1', 'Oscar Tiger', '50', '1300000', '2021-11-03', 'adit'),
+(46, 'TRX006', '8', 'Aligator Florida', '10', '150000', '2021-11-04', 'adit'),
+(47, 'TRX007', '4', 'Arwana', '2', '4200000', '2021-11-05', 'adit'),
+(48, 'TRX008', '9', 'Neon Tetra', '100', '1000000', '2021-11-05', 'adit'),
+(49, 'TRX009', '6', 'Ikan Mas', '10', '10000', '2021-11-05', 'adit'),
+(50, 'TRX009', '12', 'Polypterus endlicher', '2', '40000', '2021-11-05', 'adit'),
+(51, 'TRX009', '5', 'Chana Yellow Setarum', '1', '40000', '2021-11-05', 'adit'),
+(53, 'TRX010', '13', 'Polypterus Lapradei', '5', '250000', '2021-11-20', 'adit'),
+(54, 'TRX011', '10', 'Sapu-Sapu', '10', '50000', '2021-11-21', 'adit'),
+(55, 'TRX011', '2', 'Discus', '1', '20000', '2021-11-21', 'adit'),
+(56, 'TRX011', '6', 'Ikan Mas', '3', '3000', '2021-11-21', 'adit'),
+(57, 'TRX012', '11', 'Oscar Tiger Albino', '1', '20000', '2021-11-21', 'adit'),
+(58, 'TRX012', '11', 'Oscar Tiger Albino', '1', '20000', '2021-11-21', 'adit');
 
 --
 -- Triggers `nota`
@@ -116,19 +132,19 @@ CREATE TABLE `stk_ikn` (
 --
 
 INSERT INTO `stk_ikn` (`id_ikan`, `nama_ikan`, `harga_beli`, `harga_jual`, `stok`, `tanggal_input`) VALUES
-('1', 'Oscar Tiger', 15000, 26000, 84, '2021-10-25'),
-('10', 'Sapu-Sapu', 3000, 5000, 100, '2021-10-17'),
-('11', 'Oscar Tiger Albino', 10000, 20000, 95, '2021-10-17'),
-('12', 'Polypterus endlicher', 10000, 20000, 10, '2021-10-17'),
-('13', 'Polypterus Lapradei', 25000, 50000, 98, '2021-10-17'),
+('1', 'Oscar Tiger', 15000, 26000, 49, '2021-10-25'),
+('10', 'Sapu-Sapu', 3000, 5000, 89, '2021-10-17'),
+('11', 'Oscar Tiger Albino', 10000, 20000, 98, '2021-10-17'),
+('12', 'Polypterus endlicher', 10000, 20000, 8, '2021-10-17'),
+('13', 'Polypterus Lapradei', 25000, 50000, 90, '2021-10-17'),
 ('2', 'Discus', 10000, 20000, 99, '2021-07-10'),
 ('3', 'Cupang Aduan', 500, 3000, 100, '2021-05-01'),
-('4', 'Arwana', 1000000, 2100000, 9, '2021-08-12'),
-('5', 'Chana Yellow Setarum', 25000, 40000, 99, '2021-07-12'),
-('6', 'Ikan Mas', 500, 1000, 1000, '2021-06-10'),
+('4', 'Arwana', 1000000, 2100000, 7, '2021-08-12'),
+('5', 'Chana Yellow Setarum', 25000, 40000, 98, '2021-07-12'),
+('6', 'Ikan Mas', 500, 1000, 987, '2021-06-10'),
 ('7', 'Mas Koki', 5000, 7000, 90, '2021-08-24'),
-('8', 'Aligator Florida', 10000, 15000, 20, '2021-10-17'),
-('9', 'Neon Tetra', 5000, 10000, 100, '2021-10-17');
+('8', 'Aligator Florida', 10000, 15000, 10, '2021-10-17'),
+('9', 'Neon Tetra', 5000, 10000, 0, '2021-10-17');
 
 -- --------------------------------------------------------
 
@@ -158,7 +174,7 @@ INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat`, `nama_pemilik`) VALUES
 
 CREATE TABLE `transaksi` (
   `id_trx` varchar(11) NOT NULL,
-  `tanggal` varchar(225) NOT NULL,
+  `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `bayar` int(11) NOT NULL,
@@ -172,9 +188,18 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_trx`, `tanggal`, `jumlah`, `total`, `bayar`, `kembali`, `admin`, `jml_jenis`) VALUES
-('TRX001', '17 October 2021, 17:59', 2, 66000, 70000, 4000, 'adit', '2'),
-('TRX002', '17 October 2021, 18:15', 22, 2450000, 2500000, 50000, 'adit', '4'),
-('TRX003', '17 October 2021, 19:31', 22, 530000, 600000, 70000, 'adit', '4');
+('TRX001', '2021-11-01', 2, 66000, 70000, 4000, 'adit', '2'),
+('TRX002', '2021-11-02', 22, 2450000, 2500000, 50000, 'adit', '4'),
+('TRX003', '2021-11-03', 22, 530000, 600000, 70000, 'adit', '4'),
+('TRX004', '2021-11-03', 3, 2131000, 2200000, 69000, 'adit', '3'),
+('TRX005', '2021-11-03', 50, 1300000, 1500000, 200000, 'adit', '1'),
+('TRX006', '2021-11-04', 10, 150000, 150000, 0, 'adit', '1'),
+('TRX007', '2021-11-05', 2, 4200000, 5000000, 800000, 'adit', '1'),
+('TRX008', '2021-11-05', 100, 1000000, 1000000, 0, 'adit', '1'),
+('TRX009', '2021-11-06', 13, 90000, 100000, 10000, 'adit', '3'),
+('TRX010', '2021-11-20', 5, 250000, 300000, 50000, 'adit', '1'),
+('TRX011', '2021-11-21', 14, 73000, 75000, 2000, 'adit', '3'),
+('TRX012', '2021-11-21', 2, 40000, 50000, 10000, 'adit', '2');
 
 -- --------------------------------------------------------
 
@@ -252,13 +277,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `jual`
 --
 ALTER TABLE `jual`
-  MODIFY `id_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`

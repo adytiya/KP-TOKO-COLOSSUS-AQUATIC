@@ -12,7 +12,7 @@ include 'head.php';
     <title>Colossus Aquatic</title>
 </head>
 
-<body>
+<body onload="print()">
 
     <center>
 
@@ -38,7 +38,7 @@ include 'head.php';
             <tbody>
                 <?php
                 $no = 1;
-                $tgl = date("j F Y");
+                $tgl = date("Y-m-d");
                 $data = mysqli_query($koneksi, "SELECT * FROM nota WHERE tanggal LIKE '%$tgl%'");
                 while ($user_data = mysqli_fetch_array($data)) {
                 ?>
@@ -59,27 +59,18 @@ include 'head.php';
         </table>
         <?php
 
-        $tgl = date("j F Y");
-        $data = mysqli_query($koneksi, "SELECT SUM(total)as total  FROM nota WHERE tanggal LIKE '%$tgl%'");
-        while ($user_data = mysqli_fetch_array($data)) { ?>
-            <h5 name='modal'> Pemasukan Per tanggal <?php echo $tgl; ?> = Rp. <?= number_format($user_data['total'], 0, ',', '.'); ?></h5>
-        <?php
-        }
-        ?>
-        <?php
-
-        $tgl = date("j F Y");
-        $data = mysqli_query($koneksi, "SELECT SUM(jumlah)as jumlah  FROM nota WHERE tanggal LIKE '%$tgl%'");
-        while ($user_data = mysqli_fetch_array($data)) { ?>
-            <h5 name='modal'> Jumlah Ikan Yang Terjual Per tanggal <?php echo $tgl; ?> = <?php echo $user_data['jumlah'] ?> Ekor</h5>
-        <?php
-        }
-        ?>
+        $tgl = date("Y-m-d");
+        $data = mysqli_query($koneksi, "SELECT * FROM nota WHERE tanggal='$tgl'");
+        $pemasukan = 0;
+        $jumlahikn = 0;
+        while ($user_data = mysqli_fetch_array($data)) {
+            $pemasukan += $user_data['total'];
+            $jumlahikn += $user_data['jumlah'];
+        } ?>
+        <h5> Pemasukan Per tanggal <?php echo $tgl; ?> = Rp. <?= number_format($pemasukan, 0, ',', '.'); ?></h5>
+        <h5 name='modal'> Jumlah Ikan Yang Terjual Per tanggal <?php echo $tgl; ?> = <?php echo $jumlahikn; ?> Ekor</h5>
     </div>
 </body>
-<script>
-    window.print();
-    window.close();
-</script>
+
 
 </html>

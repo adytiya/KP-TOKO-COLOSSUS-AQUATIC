@@ -40,11 +40,9 @@ include 'head.php';
 
                                 </tr>
                             </thead>
-
                             <tbody>
                                 <?php
                                 include 'koneksi.php';
-
                                 $data = mysqli_query($koneksi, "SELECT * FROM stk_ikn ");
                                 while ($user_data = mysqli_fetch_array($data)) {
                                 ?>

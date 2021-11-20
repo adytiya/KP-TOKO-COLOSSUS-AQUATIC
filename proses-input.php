@@ -8,7 +8,7 @@ if (isset($_POST['tambah'])) {
     $result = $koneksi->query($sql);
     $row = $result->fetch_assoc();
 
-    $tanggal = date("j F Y, G:i");
+    $tanggal = date("Y-m-d");
     $sisa = $row['stok'];
     $nama = $row['nama_ikan'];
     $id = $row['id_ikan'];

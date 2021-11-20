@@ -33,7 +33,7 @@ include 'auto-kode.php';
                         </div>
                         <div class="card-body">
                             <div class="row mb-2">
-                                <label class="col-lg-3 col-sm-2">Kode Transaksi</label>
+                                <label class="col-lg-3 col-sm-1">Kode Transaksi</label>
                                 <div class="col-sm-4">
 
                                     <input type="text" readonly="readonly" class="form-control" id="kode" name="kode" value="<?= $kodeauto; ?>">
@@ -152,7 +152,7 @@ include 'auto-kode.php';
                                 <input type="hidden" name="nama_ikan[]" value="<?php echo $rows['nama_ikan'] ?>">
                                 <input type="hidden" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
                                 <input type="hidden" name="total_brg[]" value="<?= $rows['total']; ?>">
-                                <input type="hidden" name="tanggal[]" value="<?php echo date("j F Y, G:i"); ?> ">
+                                <input type="hidden" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
                                 <input type="hidden" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
 
 

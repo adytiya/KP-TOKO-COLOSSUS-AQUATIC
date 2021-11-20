@@ -21,8 +21,6 @@ include 'view.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Data Stok Ikan</h1>
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">

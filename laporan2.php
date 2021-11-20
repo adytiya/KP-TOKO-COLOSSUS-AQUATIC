@@ -9,8 +9,6 @@ include 'view.php';
 
     <!-- Page Wrapper -->
     <?php
-
-    require 'koneksi.php';
     require('sidebar.php');
     ?>
     <!-- Main Content -->
@@ -22,32 +20,31 @@ include 'view.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <?php
-            //mengenalkan variabel teks
-            $sqlperiode = "";
-            $awaltgl = "";
-            $akhirtgl = "";
-            $tglawal = "";
-            $tglakhir = "";
 
-            if (isset($_POST['btntampilkan'])) {
-                $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
-                $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
-                $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
-            } else {
-                $tglawal = "01-" . date('m-Y');
-                $tglakhir = date('d-m-Y');
-                $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
-            }
-            ?>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
+                <?php
+                //mengenalkan variabel teks
+                $sqlperiode = " ";
+                $awaltgl = " ";
+                $akhirtgl = " ";
+                $tglawal = " ";
+                $tglakhir = " ";
+
+                if (isset($_POST['btntampilkan'])) {
+                    $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
+                    $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
+                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                } else {
+                    $awaltgl = "01-" . date('m-Y');
+                    $akhirtgl = date('d-m-Y');
+                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                }
+                ?>
                 <div class="card-header py-3">
                     <h4>Periode tanggal <b><?php echo $tglawal; ?></b> s/d <b><?php echo $tglakhir; ?></b></h4>
                 </div>
-
                 <div class="card-body">
-
                     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" target="_self">
 
                         <div class="row py-3">
@@ -106,7 +103,7 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-                        <input type="submit" class="btn btn-success" value="Print laporan">
+                        <a href="print-laporan2.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Cetak Laporan</a>
                     </div>
                 </div>
             </div>

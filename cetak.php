@@ -10,7 +10,7 @@ include 'cek-sesi.php';
     <title>Colossus Aquatic</title>
 </head>
 
-<body>
+<body onload="print()">
 
     <center>
 
@@ -102,9 +102,6 @@ include 'cek-sesi.php';
         </tbody>
     </table>
 </body>
-<script>
-    window.print();
-    window.close();
-</script>
+
 
 </html>
