@@ -43,7 +43,7 @@ include 'auto-kode.php';
                                 <div class="row mb-2">
                                     <label class="col-lg-3 col-sm-2">cari barang</label>
                                     <div class="col-sm-4">
-                                        <input type="varchar" autocomplete="off" class="form-control" id="cari" name="cari">
+                                        <input type="varchar" autocomplete="off" class="form-control" id="cari" name="cari" required>
                                         <div class="list-group" id="show-list">
                                         </div>
                                     </div>
@@ -121,7 +121,6 @@ include 'auto-kode.php';
                                                     </td>
                                                 </tr>
                                             <?php
-
                                                 $total_jumlah += $user_data['jumlah'];
                                                 $total_semua += $user_data['total'];
                                                 $sql2 = "SELECT COUNT(nama_ikan) FROM jual";
@@ -131,22 +130,17 @@ include 'auto-kode.php';
                                                 }
                                             }
                                             ?>
-
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
                         <form method="POST" action="proses-input-trs.php">
                             <?php
                             $no = 1;
-
                             $nota = mysqli_query($koneksi, "SELECT * FROM jual ");
                             while ($rows = mysqli_fetch_array($nota)) {
                             ?>
-
-
                                 <input type="hidden" name="id_ikan[]" value="<?php echo $rows['id_ikan']; ?>">
                                 <input type="hidden" name="id_trs[]" value="<?php echo $kodeauto ?>">
                                 <input type="hidden" name="nama_ikan[]" value="<?php echo $rows['nama_ikan'] ?>">
@@ -154,23 +148,15 @@ include 'auto-kode.php';
                                 <input type="hidden" name="total_brg[]" value="<?= $rows['total']; ?>">
                                 <input type="hidden" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
                                 <input type="hidden" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
-
-
                             <?php
-
                             }
                             ?>
                             <div class="row mb-2">
-
                                 <label class="col-lg-2 mb-1">Total Semua</label>
                                 <div class="col-sm-3">
-
                                     <input type="text" class="form-control" id="total" onkeyup="kembali();" name="total" value="<?php echo $total_semua; ?>">
-
                                 </div>
                                 <label class="col-lg-1 sm-5 mb-3">Bayar</label>
-
-
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control" onkeyup="kembali();" id="bayar" name="bayar" autocomplete="off">
                                 </div>
@@ -178,10 +164,11 @@ include 'auto-kode.php';
                                 <input type="hidden" name="kode" value="<?= $kodeauto; ?>">
                                 <input type="hidden" name="total" value="<?= $total_semua; ?>">
                                 <input type="hidden" class="form-control" onkeyup="kembali();" id="balik" name="balik">
-                                <button type="hidden" name="input" class="btn btn-primary col-sm-1">Submit</button>
                                 <input type="hidden" name="jml" value="<?php echo $jml; ?>">
-                                <button class="btn btn-danger" name="reset" id="reset">RESET</button>
-
+                                <div class="col-sm-3">
+                                    <button type="input" name="input" class="btn btn-primary ">Submit</button>
+                                    <button class="btn btn-danger" name="reset" id="reset">RESET</button>
+                                </div>
                             </div>
                         </form>
                         <div class="row mb-2">
@@ -189,9 +176,7 @@ include 'auto-kode.php';
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" onkeyup="kembali();" id="kembali" name="kembali">
                             </div>
-
                             <div class="col-mt-6">
-
                                 <a class="btn btn-success" href="#" onclick="window.open('cetak.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">Print Nota</a>
                             </div>
                         </div>

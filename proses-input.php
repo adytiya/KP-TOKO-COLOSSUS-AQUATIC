@@ -14,9 +14,17 @@ if (isset($_POST['tambah'])) {
     $id = $row['id_ikan'];
     $jumlah = 1;
     $total = $row['harga_jual'];
+    if (!empty($data)) {
+?>
+        <script type="text/javascript">
+            alert("data barang tidak ada");
+            window.location.href = "Transaksi.php"
+        </script>
+    <?php
+    }
 
     if ($sisa == 0) {
-?>
+    ?>
         <script type="text/javascript">
             alert("stok barang habis tidak bisa melakukan transaksi");
             window.location.href = "Transaksi.php"
