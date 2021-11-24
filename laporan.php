@@ -36,7 +36,7 @@ include 'view.php';
                                 <tr>
                                     <th>No</th>
                                     <th>ID_transaksi</th>
-                                    <th>Nama Ikan</th>
+                                    <th>Nama stok</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
                                     <th>Tanggal</th>
@@ -54,7 +54,7 @@ include 'view.php';
                                     <tr>
                                         <td><?php echo $no++; ?></td>
                                         <td><?php echo $user_data['id_trs']; ?></td>
-                                        <td><?php echo $user_data['nama_ikan']; ?></td>
+                                        <td><?php echo $user_data['nama_stok']; ?></td>
                                         <td><?php echo $user_data['jumlah']; ?></td>
                                         <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
                                         <td><?php echo $user_data['tanggal']; ?></td>

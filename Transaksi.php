@@ -105,11 +105,12 @@ include 'auto-kode.php';
                                             ?>
                                                 <tr>
                                                     <td><?php echo $no++; ?></td>
-                                                    <td><?php echo $user_data['nama_ikan']; ?></td>
+                                                    <td><?php echo $user_data['nama_stok']; ?></td>
                                                     <td>
                                                         <form method="POST" action="update-transaksi.php">
                                                             <input type="number" id="jumlah" name="jumlah" value="<?php echo $user_data['jumlah']; ?>" class="form-control">
-                                                            <input type="hidden" name="id_ikan" value="<?php echo $user_data['id_ikan']; ?>" class="form-control">
+                                                            <input type="hidden" name="satuan" value="<?php echo $user_data['satuan']; ?>" class="form-control">
+                                                            <input type="hidden" name="id_stok" value="<?php echo $user_data['id_stok']; ?>" class="form-control">
                                                             <input type="hidden" name="id_jual" value="<?php echo $user_data['id_jual']; ?>" class="form-control">
                                                     </td>
                                                     <td>Rp. <?= number_format($user_data['total'], 0, ',', '.'); ?></td>
@@ -123,10 +124,10 @@ include 'auto-kode.php';
                                             <?php
                                                 $total_jumlah += $user_data['jumlah'];
                                                 $total_semua += $user_data['total'];
-                                                $sql2 = "SELECT COUNT(nama_ikan) FROM jual";
+                                                $sql2 = "SELECT COUNT(nama_stok) FROM jual";
                                                 $tst = mysqli_query($koneksi, $sql2);
                                                 while ($data2 = mysqli_fetch_assoc($tst)) {
-                                                    $jml = $data2['COUNT(nama_ikan)'];
+                                                    $jml = $data2['COUNT(nama_stok)'];
                                                 }
                                             }
                                             ?>
@@ -141,13 +142,14 @@ include 'auto-kode.php';
                             $nota = mysqli_query($koneksi, "SELECT * FROM jual ");
                             while ($rows = mysqli_fetch_array($nota)) {
                             ?>
-                                <input type="hidden" name="id_ikan[]" value="<?php echo $rows['id_ikan']; ?>">
-                                <input type="hidden" name="id_trs[]" value="<?php echo $kodeauto ?>">
-                                <input type="hidden" name="nama_ikan[]" value="<?php echo $rows['nama_ikan'] ?>">
-                                <input type="hidden" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
-                                <input type="hidden" name="total_brg[]" value="<?= $rows['total']; ?>">
-                                <input type="hidden" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
-                                <input type="hidden" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
+                                <input type="text" name="id_stok[]" value="<?php echo $rows['id_stok']; ?>">
+                                <input type="text" name="id_trs[]" value="<?php echo $kodeauto ?>">
+                                <input type="text" name="nama_stok[]" value="<?php echo $rows['nama_stok'] ?>">
+                                <input type="text" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
+                                <input type="text" name="satuan[]" value="<?php echo $rows['satuan']; ?>">
+                                <input type="text" name="total_brg[]" value="<?= $rows['total']; ?>">
+                                <input type="text" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
+                                <input type="text" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
                             <?php
                             }
                             ?>

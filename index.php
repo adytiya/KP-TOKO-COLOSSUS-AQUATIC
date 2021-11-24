@@ -27,30 +27,27 @@ include 'view.php';
             <div class="row mb-2">
 
             </div>
-
-
-
             <div class="row mb-2">
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Jenis Ikan yang ada</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">stok barang</div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_nm; ?> Jenis</div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_stok_brg; ?> Buah</div>
                             </div>
                         </div>
-                        <div class="card-footer h6 font-weight-bold text-gray-800"><a href='ikan.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
+                        <div class="card-footer h6 font-weight-bold text-gray-800"><a href='stok.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan Keseluruhan </div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan</div>
                         <div class="card-body">
                             <div class="col mr-2">
                                 <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_stok; ?> Ekor </div>
                             </div>
                         </div>
-                        <div class="card-footer h6 font-weight-bold text-gray-800"><a href='ikan.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
+                        <div class="card-footer h6 font-weight-bold text-gray-800"><a href='stok.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
@@ -64,7 +61,6 @@ include 'view.php';
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='laporan.php'>Table Laporan <i class='fa fa-arrow-right'></i></a></div>
                     </div>
                 </div>
-
             </div>
 
 

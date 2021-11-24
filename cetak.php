@@ -47,7 +47,7 @@ include 'cek-sesi.php';
         <thead>
             <tr align='center'>
                 <td width='1%'>No</td>
-                <td width='15%'>Nama Ikan</td>
+                <td width='15%'>Nama</td>
                 <td width='4%'>Qty</td>
                 <td width='15%'>Harga</td>
             </tr>
@@ -64,7 +64,7 @@ include 'cek-sesi.php';
             ?>
                 <tr align='left'>
                     <th align='center'><?php echo $no++ ?></th>
-                    <th align='left'><?php echo $user_data['nama_ikan'] ?></th>
+                    <th align='left'><?php echo $user_data['nama_stok'] ?></th>
                     <th align='center'><?php echo $user_data['jumlah'] ?></th>
                     <th align='right'>Rp. <?= number_format($user_data['total'], 0, ',', '.');  ?> </th>
                 </tr>
@@ -77,7 +77,7 @@ include 'cek-sesi.php';
             $row = $result->fetch_assoc();
             ?>
             <tr>
-                <th align="left" colspan="2">Jumlah Ikan</th>
+                <th align="left" colspan="2">Jumlah </th>
                 <th><?php echo $row['jumlah'] ?></th>
             </tr>
             <?php

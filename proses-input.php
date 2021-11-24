@@ -4,15 +4,16 @@ include 'koneksi.php';
 if (isset($_POST['tambah'])) {
 
     $data = $_POST['cari'];
-    $sql = "SELECT*FROM stk_ikn WHERE nama_ikan='$data'";
+    $sql = "SELECT*FROM stok WHERE nama_stok='$data'";
     $result = $koneksi->query($sql);
     $row = $result->fetch_assoc();
 
     $tanggal = date("Y-m-d");
     $sisa = $row['stok'];
-    $nama = $row['nama_ikan'];
-    $id = $row['id_ikan'];
+    $nama = $row['nama_stok'];
+    $id = $row['id_stok'];
     $jumlah = 1;
+    $satuan = $row['satuan'];
     $total = $row['harga_jual'];
     if (!empty($data)) {
 ?>
@@ -33,7 +34,7 @@ if (isset($_POST['tambah'])) {
     }
 
     if ($sisa > 0) {
-        $input = "INSERT INTO  jual  VALUES(' ','$id','$nama','$jumlah','$total','$tanggal')";
+        $input = "INSERT INTO  jual  VALUES(' ','$id','$nama','$jumlah','$satuan','$total','$tanggal')";
         $test = $koneksi->query($input);
         # credirect ke page index
         header("location:Transaksi.php");

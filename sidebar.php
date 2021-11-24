@@ -38,7 +38,7 @@
             <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
-                    <a class="collapse-item" href="ikan.php">Stok </a>
+                    <a class="collapse-item" href="stok.php">Stok </a>
                     <?php
                     if ($_SESSION['level'] == "super_admin") {  ?>
                         <a class="collapse-item" href="user.php">User </a>

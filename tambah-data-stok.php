@@ -21,11 +21,11 @@ include 'head.php';
 
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">From Tambah Stok Ikan </h1>
+            <h1 class="h3 mb-4 text-gray-800">From Tambah Stok </h1>
 
             <form method="POST" action="tambah-stok.php">
                 <?php
-                $code = "SELECT COUNT(id_ikan) AS maxid FROM stk_ikn";
+                $code = "SELECT COUNT(id_stok) AS maxid FROM stok";
                 $sql = mysqli_query($koneksi, $code);
                 $data = mysqli_fetch_array($sql);
                 $kode = $data['maxid'];
@@ -35,13 +35,13 @@ include 'head.php';
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" value="<?php echo $no; ?>">
+                        <input type="text" class="form-control" id="id" name="id_stok" value="<?php echo $no; ?>">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_ikan" name="nama_ikan">
+                        <input type="text" class="form-control" id="nama_stok" name="nama_stok">
                     </div>
                 </div>
 
@@ -64,12 +64,23 @@ include 'head.php';
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Satuan</label>
+                    <div class="col-sm-10">
+                        <select id="inputState" class="form-control" name="satuan">
+                            <option selected>Choose...</option>
+                            <option value="Ekor">Ekor</option>
+                            <option value="Buah">Buah</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Tanggal Input</label>
                     <div class="col-sm-10">
                         <input type="date" class="form-control" id="tanggal_input" name="tanggal_input">
                     </div>
                 </div>
-                <a href="ikan.php" class="btn btn-primary">
+                <a href="stok.php" class="btn btn-primary">
                     Kembali
                 </a>
                 <button type="submit" class="btn btn-primary">Tambah Data</button>

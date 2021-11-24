@@ -11,17 +11,18 @@ if (isset($_POST['input'])) {
     $kembali = $_POST['balik'];
     $nama = $_SESSION['nama'];
 
-    $id_ikan = $_POST['id_ikan'];
+    $id_stok = $_POST['id_stok'];
     $id_trs = $_POST['id_trs'];
-    $nama_ikan = $_POST['nama_ikan'];
+    $nama_stok = $_POST['nama_stok'];
     $jum_brg = $_POST['jumlah_brg'];
+    $satuan = $_POST['satuan'];
     $tot_brg = $_POST['total_brg'];
     $tgl = $_POST['tanggal'];
     $jml = $_POST['jml'];
     $admin = $_POST['admin'];
     for ($x = 0; $x < $_POST['jml']; $x++) {
 
-        $sqli = "INSERT INTO nota VALUES ('','$id_trs[$x]','$id_ikan[$x]','$nama_ikan[$x]','$jum_brg[$x]','$tot_brg[$x]','$tgl[$x]','$admin[$x]')";
+        $sqli = "INSERT INTO nota VALUES ('','$id_trs[$x]','$id_stok[$x]','$nama_stok[$x]','$jum_brg[$x]','$satuan[$x]','$tot_brg[$x]','$tgl[$x]','$admin[$x]')";
         $row = mysqli_query($koneksi, $sqli);
     }
     $sql = mysqli_query($koneksi, "INSERT INTO  transaksi  VALUES('$id_trx','$tanggal','$jumlah','$total','$bayar','$kembali','$nama','$jml')");

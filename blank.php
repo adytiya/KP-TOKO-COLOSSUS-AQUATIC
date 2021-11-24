@@ -1,6 +1,6 @@
 <!--halaman kosong-->
 <?php
-
+include 'cek-sesi.php';
 include 'head.php';
 ?>
 
