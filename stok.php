@@ -31,6 +31,7 @@ include 'head.php';
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Jenis</th>
                                     <th>Nama</th>
                                     <th>Harga Beli</th>
                                     <th>Harga Jual</th>
@@ -49,6 +50,7 @@ include 'head.php';
                                 ?>
                                     <tr>
                                         <th><?php echo $user_data['id_stok'] ?></th>
+                                        <th><?php echo $user_data['jenis'] ?></th>
                                         <th><?php echo $user_data['nama_stok'] ?></th>
                                         <td>Rp. <?= number_format($user_data['harga_beli'], 0, ',', '.'); ?></td>
                                         <td>Rp. <?= number_format($user_data['harga_jual'], 0, ',', '.'); ?></td>

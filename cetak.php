@@ -48,6 +48,7 @@ include 'cek-sesi.php';
             <tr align='center'>
                 <td width='1%'>No</td>
                 <td width='15%'>Nama</td>
+                <td width='15%'>Jenis</td>
                 <td width='4%'>Qty</td>
                 <td width='15%'>Harga</td>
             </tr>
@@ -64,6 +65,7 @@ include 'cek-sesi.php';
             ?>
                 <tr align='left'>
                     <th align='center'><?php echo $no++ ?></th>
+                    <th align='left'><?php echo $user_data['jenis'] ?></th>
                     <th align='left'><?php echo $user_data['nama_stok'] ?></th>
                     <th align='center'><?php echo $user_data['jumlah'] ?></th>
                     <th align='right'>Rp. <?= number_format($user_data['total'], 0, ',', '.');  ?> </th>

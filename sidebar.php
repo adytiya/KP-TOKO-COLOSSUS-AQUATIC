@@ -76,8 +76,14 @@
             </a>
             <div id="laporan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="laporan.php">Data Laporan </a>
-
+                    <?php
+                    if ($_SESSION['level'] == "admin") {  ?>
+                        <a class="collapse-item" href="laporan.php">Laporan </a>
+                    <?php } ?>
+                    <?php
+                    if ($_SESSION['level'] == "super_admin") {  ?>
+                        <a class="collapse-item" href="laporan2.php">Laporan </a>
+                    <?php } ?>
                 </div>
             </div>
 

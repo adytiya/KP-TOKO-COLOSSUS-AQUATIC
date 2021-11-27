@@ -36,7 +36,12 @@ include 'head.php';
                             <input type="text" class="form-control" name="id" value="<?php echo $row['id_stok'] ?>">
                         </div>
                     </div>
-
+                    <div class="row mb-3">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Jenis</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="jenis_stok" name="jenis_stok" value="<?php echo $row['jenis']; ?>">
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
@@ -66,7 +71,8 @@ include 'head.php';
                         <div class="col-sm-10">
                             <select id="inputState" class="form-control" name="satuan">
                                 <option selected><?php echo $row['satuan']; ?></option>
-                                <option value="Ekor">Ekor</option>
+                                <option value="Kg">Kg</option>
+                                <option value="Set">Set</option>
                                 <option value="Buah">Buah</option>
                             </select>
                         </div>

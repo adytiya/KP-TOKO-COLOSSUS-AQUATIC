@@ -10,6 +10,7 @@ if (isset($_POST['tambah'])) {
 
     $tanggal = date("Y-m-d");
     $sisa = $row['stok'];
+    $jenis = $row['jenis'];
     $nama = $row['nama_stok'];
     $id = $row['id_stok'];
     $jumlah = 1;
@@ -34,7 +35,7 @@ if (isset($_POST['tambah'])) {
     }
 
     if ($sisa > 0) {
-        $input = "INSERT INTO  jual  VALUES(' ','$id','$nama','$jumlah','$satuan','$total','$tanggal')";
+        $input = "INSERT INTO  jual  VALUES(' ','$id','$jenis','$nama','$jumlah','$satuan','$total','$tanggal')";
         $test = $koneksi->query($input);
         # credirect ke page index
         header("location:Transaksi.php");

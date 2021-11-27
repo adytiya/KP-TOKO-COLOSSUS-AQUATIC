@@ -25,6 +25,7 @@ include 'head.php';
                 <tr>
                     <th>No</th>
                     <th>ID_transaksi</th>
+                    <th>Jenis</th>
                     <th>Nama</th>
                     <th>Jumlah</th>
                     <th>Total</th>
@@ -45,6 +46,7 @@ include 'head.php';
                     <tr>
                         <td><?php echo $no++; ?></td>
                         <td><?php echo $user_data['id_trs']; ?></td>
+                        <td><?php echo $user_data['jenis']; ?></td>
                         <td><?php echo $user_data['nama_stok']; ?></td>
                         <td><?php echo $user_data['jumlah']; ?></td>
                         <td><?php echo $user_data['total']; ?></td>
