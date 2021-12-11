@@ -70,7 +70,7 @@ include 'head.php';
             $jumlahikn += $user_data['jumlah'];
         } ?>
         <h5> Pemasukan Per tanggal <?php echo $tgl; ?> = Rp. <?= number_format($pemasukan, 0, ',', '.'); ?></h5>
-        <h5 name='modal'> Jumlah Ikan Yang Terjual Per tanggal <?php echo $tgl; ?> = <?php echo $jumlahikn; ?> Ekor</h5>
+        <h5 name='modal'> Jumlah barang yang terjual Per tanggal <?php echo $tgl; ?> = <?php echo $jumlahikn; ?></h5>
     </div>
 </body>
 

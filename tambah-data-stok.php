@@ -22,7 +22,6 @@ include 'head.php';
 
             <!-- Page Heading -->
             <h1 class="h3 mb-4 text-gray-800">From Tambah Stok </h1>
-
             <form method="POST" action="tambah-stok.php">
                 <?php
                 $code = "SELECT COUNT(id_stok) AS maxid FROM stok";

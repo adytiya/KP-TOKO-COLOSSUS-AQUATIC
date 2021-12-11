@@ -13,9 +13,7 @@ include 'cek-sesi.php';
 <body onload="print()">
 
     <center>
-
         <h2>Struk Bukti Pembelian</h2>
-
     </center>
     <table type="hidden" align="center" cellspacing='1' cellpadding="8" sstyle='width:600px; font-size:8pt; font-family:Serif;'>
         <tbody>

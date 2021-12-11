@@ -10,7 +10,7 @@
             <div class="modal-body">Cetak Struk??</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="proses-logout.php">Logout</a>
+                <a class="btn btn-primary" href="cetak.php">Cetak</a>
             </div>
         </div>
     </div>

@@ -1,13 +1,28 @@
 <?php
 include 'cek-sesi.php';
 include 'koneksi.php';
+if (isset($_POST['reset'])) {
+    $sql = "DELETE FROM jual";
+    $query = mysqli_query($koneksi, $sql);
+    if ($query) {
+        header("location:Transaksi.php");
+    }
+}
 if (isset($_POST['input'])) {
     $bayar = $_POST['bayar'];
     $total = $_POST['total'];
-    if (!empty($bayar)) {
+    if ($total == 0) {
 ?>
         <script type="text/javascript">
-            alert("silahkan masukan nilai pembayaran");
+            alert("silahkan melakukan transaksi");
+            window.location.href = "Transaksi.php"
+        </script>
+    <?php
+    }
+    if (!empty($bayar)) {
+    ?>
+        <script type="text/javascript">
+            alert("Pembayaran kurang / kosong silahkan cek kembali");
             window.location.href = "Transaksi.php"
         </script>
     <?php
@@ -18,9 +33,16 @@ if (isset($_POST['input'])) {
             alert("Pembayaran kurang / kosong silahkan cek kembali ");
             window.location.href = "Transaksi.php"
         </script>
+    <?php
+    }
+    if ($bayar == 0) {
+    ?>
+        <script type="text/javascript">
+            alert("Pembayaran kurang / kosong silahkan cek kembali ");
+            window.location.href = "Transaksi.php"
+        </script>
 <?php
     }
-
     if ($bayar > $total) {
 
         $id_trx = $_POST['kode'];
@@ -51,14 +73,6 @@ if (isset($_POST['input'])) {
             $test = mysqli_query($koneksi, $delete);
             header("location:Transaksi.php");
         }
-    }
-}
-
-if (isset($_POST['reset'])) {
-    $sql = "DELETE FROM jual";
-    $query = mysqli_query($koneksi, $sql);
-    if ($query) {
-        header("location:Transaksi.php");
     }
 } else {
     echo "ERROR, data gagal diupdate" . mysqli_error($koneksi);

@@ -41,10 +41,10 @@ include 'view.php';
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Jenis Barang</div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_stok; ?> Ekor </div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $jml_jenis; ?> Jenis</div>
                             </div>
                         </div>
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='stok.php'>Table Stok <i class='fa fa-arrow-right'></i></a></div>
@@ -52,10 +52,10 @@ include 'view.php';
                 </div>
                 <div class="col-xl-3 col-md-5 mb-4">
                     <div class="card  text-center shadow h-100 ">
-                        <div class="card-header bg-primary text-light h6 font-weight-bold">Stok Ikan Yang Terjual</div>
+                        <div class="card-header bg-primary text-light h6 font-weight-bold">Barang Yang Terjual</div>
                         <div class="card-body">
                             <div class="col mr-2">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $terjual; ?> Ekor</div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo $terjual; ?> </div>
                             </div>
                         </div>
                         <div class="card-footer h6 font-weight-bold text-gray-800"><a href='laporan.php'>Table Laporan <i class='fa fa-arrow-right'></i></a></div>

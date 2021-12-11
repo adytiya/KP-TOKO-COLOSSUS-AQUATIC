@@ -14,14 +14,20 @@ include 'head.php';
     <div id="content">
 
         <!-- Topbar -->
-        <?php require('navbar.php'); ?>
+        <?php
+        require('navbar.php');
+        require "modal-tester.php";
+        require "modal/tambah/modal-tambah-jenis.php";  ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-
-
+            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#logouttester">
+                cetak struk
+            </a>
+            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#tmbhjns">
+                tambah jenis
+            </a>
 
         </div>
         <!-- /.container-fluid -->

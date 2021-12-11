@@ -7,7 +7,6 @@ if (isset($_POST['tambah'])) {
     $sql = "SELECT*FROM stok WHERE nama_stok='$data'";
     $result = $koneksi->query($sql);
     $row = $result->fetch_assoc();
-
     $tanggal = date("Y-m-d");
     $sisa = $row['stok'];
     $jenis = $row['jenis'];
