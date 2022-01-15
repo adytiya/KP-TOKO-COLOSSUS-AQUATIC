@@ -143,15 +143,15 @@ include 'auto-kode.php';
                             $nota = mysqli_query($koneksi, "SELECT * FROM jual ");
                             while ($rows = mysqli_fetch_array($nota)) {
                             ?>
-                                <input type="hidden" name="id_stok[]" value="<?php echo $rows['id_stok']; ?>">
-                                <input type="hidden" name="id_trs[]" value="<?php echo $kodeauto ?>">
-                                <input type="hidden" name="jenis_stok[]" value="<?php echo $rows['jenis']; ?>">
-                                <input type="hidden" name="nama_stok[]" value="<?php echo $rows['nama_stok']; ?>">
-                                <input type="hidden" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
-                                <input type="hidden" name="satuan[]" value="<?php echo $rows['satuan']; ?>">
-                                <input type="hidden" name="total_brg[]" value="<?= $rows['total']; ?>">
-                                <input type="hidden" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
-                                <input type="hidden" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
+                                <input type="text" name="id_stok[]" value="<?php echo $rows['id_stok']; ?>">
+                                <input type="text" name="id_trs[]" value="<?php echo $kodeauto ?>">
+                                <input type="text" name="jenis_stok[]" value="<?php echo $rows['jenis']; ?>">
+                                <input type="text" name="nama_stok[]" value="<?php echo $rows['nama_stok']; ?>">
+                                <input type="text" name="jumlah_brg[]" value="<?php echo $rows['jumlah']; ?>">
+                                <input type="text" name="satuan[]" value="<?php echo $rows['satuan']; ?>">
+                                <input type="text" name="total_brg[]" value="<?= $rows['total']; ?>">
+                                <input type="text" name="tanggal[]" value="<?php echo date("Y-m-d"); ?> ">
+                                <input type="text" name="admin[]" value="<?php echo $_SESSION['nama']; ?>">
                             <?php
                             }
                             ?>
@@ -162,7 +162,7 @@ include 'auto-kode.php';
                                 </div>
                                 <label class="col-lg-1 sm-5 mb-3">Bayar</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" onkeyup="kembali();" id="bayar" name="bayar" autocomplete="off">
+                                    <input type="number" class="form-control" onkeyup="kembali();" id="bayar" name="bayar" autocomplete="off">
                                 </div>
                                 <input type="hidden" name="jumlah" value="<?= $total_jumlah; ?>">
                                 <input type="hidden" name="kode" value="<?= $kodeauto; ?>">

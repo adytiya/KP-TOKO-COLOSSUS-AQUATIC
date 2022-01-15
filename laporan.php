@@ -22,12 +22,13 @@ include 'view.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- DataTales Example -->
+
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2 class="text-center">Data Laporan</h2>
+                    <h2 class="text-center">Histori Transaksi </h2>
                 </div>
                 <div class="card-header py-3">
-                    <a class="btn btn-success" href="#" onclick="window.open('cetak-laporan.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">laporan harian </a>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -54,7 +55,7 @@ include 'view.php';
                                 ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $user_data['id_trs']; ?></td>
+                                        <td><?php echo $user_data['id_trx']; ?></td>
                                         <td><?php echo $user_data['jenis']; ?></td>
                                         <td><?php echo $user_data['nama_stok']; ?></td>
                                         <td><?php echo $user_data['jumlah']; ?></td>
@@ -69,7 +70,9 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-                        <h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>
+                        <a class="btn btn-success" target="_blank" href="cetak-exel.php">EXPORT KE EXCEL</a>
+                        <a class="btn btn-success" href="#" onclick="window.open('cetak-laporan.php','POPUP WINDOW TITLE HERE','width=650,height=800').print()">Cetak Laporan </a>
+                        <!--<h3 name='modal'> Pemasukan Uang = Rp. <?= number_format($untung, 0, ',', '.'); ?></h3>-->
                     </div>
                 </div>
             </div>

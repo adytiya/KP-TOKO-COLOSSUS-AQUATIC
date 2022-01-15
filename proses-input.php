@@ -30,6 +30,14 @@ if (isset($_POST['tambah'])) {
             alert("stok barang habis tidak bisa melakukan transaksi");
             window.location.href = "Transaksi.php"
         </script>
+    <?php
+    }
+    if ($sisa < $jumlah) {
+    ?>
+        <script type="text/javascript">
+            alert("stok barang kurang dari jumlah yang di input tidak bisa melakukan transaksi");
+            window.location.href = "Transaksi.php"
+        </script>
 <?php
     }
 

@@ -13,7 +13,7 @@ include 'cek-sesi.php';
 <body onload="print()">
 
     <center>
-        <h2>Struk Bukti Pembelian</h2>
+        <h2>Nota Bukti Pembelian</h2>
     </center>
     <table type="hidden" align="center" cellspacing='1' cellpadding="8" sstyle='width:600px; font-size:8pt; font-family:Serif;'>
         <tbody>
@@ -55,10 +55,10 @@ include 'cek-sesi.php';
             <?php
             $no = 1;
             $sql = "SELECT*FROM transaksi ORDER BY id_trx  DESC LIMIT 1";
-            $result = $koneksi->query($sql);
-            $row = $result->fetch_assoc();
+            $test = mysqli_query($koneksi, $sql);
+            $row = mysqli_fetch_array($test);
             $jumlah = $row['jml_jenis'];
-            $data = mysqli_query($koneksi, "SELECT * FROM nota ORDER BY id_trs DESC LIMIT $jumlah");
+            $data = mysqli_query($koneksi, "SELECT * FROM nota ORDER BY id_trx DESC LIMIT $jumlah");
             while ($user_data = mysqli_fetch_array($data)) {
             ?>
                 <tr align='left'>

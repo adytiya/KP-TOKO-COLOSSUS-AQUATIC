@@ -34,11 +34,11 @@ include 'view.php';
                 if (isset($_POST['btntampilkan'])) {
                     $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
                     $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
-                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                    $sqlperiode = "WHERE nota.tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                 } else {
                     $awaltgl = "01-" . date('m-Y');
                     $akhirtgl = date('d-m-Y');
-                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                    $sqlperiode = "WHERE nota.tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                 }
                 ?>
                 <div class="card-header py-3">
@@ -58,22 +58,21 @@ include 'view.php';
                                 <div class="col-lg-2">
                                     <input type="submit" name="btntampilkan" class="btn btn-success" value="tampilkan">
                                 </div>
-
                             </div>
                         </div>
-
                     </form>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Tanggal</th>
                                     <th>ID_transaksi</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
                                     <th>Bayar</th>
                                     <th>kembalian</th>
-                                    <th>Tanggal</th>
+                                    <th>keuntungan</th>
                                     <th>Admin</th>
                                 </tr>
                             </thead>
@@ -81,28 +80,35 @@ include 'view.php';
                             <tbody>
                                 <?php
 
-                                $SQL = "SELECT * FROM transaksi $sqlperiode";
+                                $SQL = "SELECT nota.tanggal,nota.id_trx,transaksi.jumlah,transaksi.total,transaksi.bayar,transaksi.kembali,SUM(nota.total-stok.harga_beli) as keuntungan,  nota.admin FROM nota INNER JOIN stok ON stok.id_stok=nota.id_stok JOIN transaksi ON transaksi.id_trx=nota.id_trx $sqlperiode GROUP by id_trx ";
                                 $data = mysqli_query($koneksi, $SQL);
                                 $no = 1;
+                                $jumlahtotal = 0;
+                                $jumlahtotal2 = 0;
                                 while ($user_data = mysqli_fetch_array($data)) {
+                                    $jumlahtotal += $user_data['keuntungan'];
+                                    $jumlahtotal2 += $user_data['keuntungan'];
                                 ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
+                                        <td><?php echo $user_data['tanggal']; ?></td>
                                         <td><?php echo $user_data['id_trx']; ?></td>
                                         <td><?php echo $user_data['jumlah']; ?></td>
                                         <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
                                         <td>Rp.<?= number_format($user_data['bayar'], 0, ',', '.'); ?></td>
                                         <td>Rp.<?= number_format($user_data['kembali'], 0, ',', '.'); ?></td>
-                                        <td><?php echo $user_data['tanggal']; ?></td>
+                                        <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
                                         <td><?php echo $user_data['admin']; ?></td>
                                     </tr>
-
-
                                 <?php
                                 }
                                 ?>
                             </tbody>
                         </table>
+                        <div>
+                            <h3> Total keuntungan = Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></h3>
+                        </div>
+                        <a href="cetak-exel2.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Export Exel</a>
                         <a href="print-laporan2.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Cetak Laporan</a>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ include 'head.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Data Stok </h1>
+            <h1>Data Barang</h1>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">

@@ -34,7 +34,7 @@ include 'head.php';
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id_stok" value="<?php echo $no; ?>">
+                        <input type="text" class="form-control" id="id" name="id_stok" readonly="readonly" value="<?php echo $no; ?>">
                     </div>
                 </div>
                 <div class="row mb-3">

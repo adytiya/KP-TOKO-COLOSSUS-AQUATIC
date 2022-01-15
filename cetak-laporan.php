@@ -45,7 +45,7 @@ include 'head.php';
                 ?>
                     <tr>
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo $user_data['id_trs']; ?></td>
+                        <td><?php echo $user_data['id_trx']; ?></td>
                         <td><?php echo $user_data['jenis']; ?></td>
                         <td><?php echo $user_data['nama_stok']; ?></td>
                         <td><?php echo $user_data['jumlah']; ?></td>
