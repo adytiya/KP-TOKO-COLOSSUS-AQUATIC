@@ -99,6 +99,7 @@ include 'view.php';
                         <div>
                             <h3> Total keseluruhan = Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></h3>
                         </div>
+                        <a href="cetak-exel-keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Export Exel</a>
                         <a href="print_keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Cetak Laporan</a>
                     </div>
                 </div>

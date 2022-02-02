@@ -83,10 +83,10 @@
                     if ($_SESSION['level'] == "super_admin") {  ?>
                         <a class="collapse-item" href="laporan2.php">Laporan Transaksi </a>
                     <?php } ?>
-                    <!--    <?php
-                            if ($_SESSION['level'] == "super_admin") {  ?>
+                    <?php
+                    if ($_SESSION['level'] == "super_admin") {  ?>
                         <a class="collapse-item" href="laporan_keuangan.php">Laporan keuangan </a>
-                    <?php } ?>-->
+                    <?php } ?>
                 </div>
             </div>
 
