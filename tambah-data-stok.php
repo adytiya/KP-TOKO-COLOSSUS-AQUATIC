@@ -24,7 +24,7 @@ include 'head.php';
             <h1 class="h3 mb-4 text-gray-800">From Tambah Stok </h1>
             <form method="POST" action="tambah-stok.php">
                 <?php
-                $code = "SELECT COUNT(id_stok) AS maxid FROM stok";
+                $code = "SELECT COUNT(id_stk) AS maxid FROM stok";
                 $sql = mysqli_query($koneksi, $code);
                 $data = mysqli_fetch_array($sql);
                 $kode = $data['maxid'];
@@ -40,7 +40,19 @@ include 'head.php';
                 <div class="row mb-3">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Jenis</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="jenis_stok" name="jenis_stok">
+                        <select id="inputState" class="form-control" name="jenis">
+                            <option selected value=""></option>
+                            <?php
+                            include 'koneksi.php';
+                            $code = "SELECT * FROM jenis";
+                            $data = mysqli_query($koneksi, $code);
+                            while ($user_data = mysqli_fetch_array($data)) {
+                            ?>
+                                <option value="<?php echo $user_data['id_jenis']; ?>"><?php echo $user_data['nama_jenis']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -71,10 +83,17 @@ include 'head.php';
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Satuan</label>
                     <div class="col-sm-10">
                         <select id="inputState" class="form-control" name="satuan">
-                            <option selected>Choose...</option>
-                            <option value="Kg">Kg</option>
-                            <option value="Set">Set</option>
-                            <option value="Buah">Buah</option>
+                            <option selected value=""></option>
+                            <?php
+                            include 'koneksi.php';
+                            $code = "SELECT * FROM satuan";
+                            $data = mysqli_query($koneksi, $code);
+                            while ($user_data = mysqli_fetch_array($data)) {
+                            ?>
+                                <option value="<?php echo $user_data['id_satuan']; ?>"><?php echo $user_data['nama_satuan']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>

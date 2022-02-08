@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
 include 'cek-sesi.php';
-
+include 'kode.php';
 ?>
 <html>
 
@@ -18,25 +18,26 @@ include 'cek-sesi.php';
     <table type="hidden" align="center" cellspacing='1' cellpadding="8" sstyle='width:600px; font-size:8pt; font-family:Serif;'>
         <tbody>
             <?php
+            $kode = $data['maxid'];
+            $tst = mysqli_query($koneksi, "SELECT * FROM toko");
+            $toko = mysqli_fetch_array($tst);
+            ?>
+            <tr align="left">
+                <th><?php echo $toko['nama_toko'] ?> </th>
+            </tr>
+            <tr align="left">
+                <th><?php echo $toko['alamat_toko'] ?> </th>
+            </tr>
+            <tr align="left">
+                <th>Tanggal : <?php echo date("j F Y"); ?></th>
+            </tr>
+            <tr align="left">
+                <th>Kasir : <?php echo $_SESSION['nama']; ?></th>
+            </tr>
+            <tr align="left">
+                <th>TRANSAKSI : <?php echo $kode; ?></th>
+            </tr>
 
-            $data = mysqli_query($koneksi, "SELECT * FROM toko");
-            while ($user_data = mysqli_fetch_array($data)) {
-            ?>
-                <tr align="left">
-                    <th><?php echo $user_data['nama_toko'] ?> </th>
-                </tr>
-                <tr align="left">
-                    <th><?php echo $user_data['alamat'] ?> </th>
-                </tr>
-                <tr align="left">
-                    <th>Tanggal : <?php echo date("j F Y, G:i"); ?></th>
-                </tr>
-                <tr align="left">
-                    <th>Kasir : <?php echo $_SESSION['nama']; ?></th>
-                </tr>
-            <?php
-            }
-            ?>
         </tbody>
 
     </table>
@@ -54,51 +55,43 @@ include 'cek-sesi.php';
         <tbody>
             <?php
             $no = 1;
-            $sql = "SELECT*FROM transaksi ORDER BY id_trx  DESC LIMIT 1";
-            $test = mysqli_query($koneksi, $sql);
-            $row = mysqli_fetch_array($test);
-            $jumlah = $row['jml_jenis'];
-            $data = mysqli_query($koneksi, "SELECT * FROM nota ORDER BY id_trx DESC LIMIT $jumlah");
+            $kode = $data['maxid'];
+            $data = mysqli_query($koneksi, "SELECT stok.nama_stk,jenis.nama_jenis,jual.jml_jual,SUM(jual.jml_jual*stok.hrg_jual) as total,user.nama_user FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN jenis on jenis.id_jenis=stok.id_jenis JOIN satuan ON satuan.id_satuan=stok.id_satuan JOIN user on user.id_user=jual.id_user JOIN transaksi on transaksi.id_trx=jual.id_trx WHERE jual.id_trx='$kode' GROUP BY jual.id_stk");
             while ($user_data = mysqli_fetch_array($data)) {
             ?>
                 <tr align='left'>
                     <th align='center'><?php echo $no++ ?></th>
-                    <th align='left'><?php echo $user_data['jenis'] ?></th>
-                    <th align='left'><?php echo $user_data['nama_stok'] ?></th>
-                    <th align='center'><?php echo $user_data['jumlah'] ?></th>
+                    <th align='left'><?php echo $user_data['nama_jenis'] ?></th>
+                    <th align='left'><?php echo $user_data['nama_stk'] ?></th>
+                    <th align='center'><?php echo $user_data['jml_jual'] ?></th>
                     <th align='right'>Rp. <?= number_format($user_data['total'], 0, ',', '.');  ?> </th>
                 </tr>
             <?php
             }
             ?>
             <?php
-            $sql = "SELECT*FROM transaksi ORDER BY id_trx  DESC LIMIT 1";
-            $result = $koneksi->query($sql);
-            $row = $result->fetch_assoc();
+            $sql = "SELECT  jual.id_jual,jual.id_trx,jenis.nama_jenis,satuan.nama_satuan,stok.nama_stk,jual.jml_jual,transaksi.jml_total, transaksi.total ,transaksi.bayar,transaksi.kembalian ,user.nama_user FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN jenis on jenis.id_jenis=stok.id_jenis JOIN satuan ON satuan.id_satuan=stok.id_satuan JOIN transaksi on transaksi.id_trx=jual.id_trx JOIN user on user.id_user=transaksi.id_user WHERE jual.id_trx='$kode' GROUP BY jual.id_stk";
+            $sqla = mysqli_query($koneksi, $sql);
+            $row = mysqli_fetch_array($sqla);
+
             ?>
             <tr>
                 <th align="left" colspan="2">Jumlah </th>
-                <th><?php echo $row['jumlah'] ?></th>
+                <th><?php echo $row['jml_total'] ?></th>
             </tr>
-            <?php
-            $data1 = mysqli_query($koneksi, "SELECT * FROM transaksi ORDER BY id_trx DESC LIMIT 1");
-            while ($user_data1 = mysqli_fetch_array($data1)) {
-            ?>
-                <tr width='15%'>
-                    <th align="left" colspan="3">Total</th>
-                    <th align="right">Rp. <?= number_format($user_data1['total'], 0, ',', '.'); ?></th>
-                </tr>
-                <tr>
-                    <th align="left" colspan="3">Bayar</th>
-                    <th align="right">Rp. <?= number_format($user_data1['bayar'], 0, ',', '.'); ?> </th>
-                </tr>
-                <tr>
-                    <th align="left" colspan="3">Kembalian</th>
-                    <th align="right">Rp. <?= number_format($user_data1['kembali'], 0, ',', '.'); ?> </th>
-                </tr>
-            <?php
-            }
-            ?>
+            <tr width='15%'>
+                <th align="left" colspan="3">Total</th>
+                <th align="right">Rp. <?= number_format($row['total'], 0, ',', '.'); ?></th>
+            </tr>
+            <tr>
+                <th align="left" colspan="3">Bayar</th>
+                <th align="right">Rp. <?= number_format($row['bayar'], 0, ',', '.'); ?> </th>
+            </tr>
+            <tr>
+                <th align="left" colspan="3">Kembalian</th>
+                <th align="right">Rp. <?= number_format($row['kembalian'], 0, ',', '.'); ?> </th>
+            </tr>
+
         </tbody>
     </table>
 </body>

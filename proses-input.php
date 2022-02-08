@@ -1,20 +1,23 @@
 <?php
+require 'cek-sesi.php';
 include 'koneksi.php';
-
+include 'auto-kode.php';
 if (isset($_POST['tambah'])) {
 
     $data = $_POST['cari'];
-    $sql = "SELECT*FROM stok WHERE nama_stok='$data'";
+    $sql = "SELECT*FROM stok WHERE nama_stk='$data'";
     $result = $koneksi->query($sql);
     $row = $result->fetch_assoc();
     $tanggal = date("Y-m-d");
     $sisa = $row['stok'];
-    $jenis = $row['jenis'];
-    $nama = $row['nama_stok'];
-    $id = $row['id_stok'];
+    $jenis = $row['id_jenis'];
+    $nama = $row['nama_stk'];
+    $id = $row['id_stk'];
+    $id_user = $_SESSION['id'];
     $jumlah = 1;
-    $satuan = $row['satuan'];
-    $total = $row['harga_jual'];
+    $id_trx = $kodeauto;
+    $satuan = $row['id_satuan'];
+    $total = $row['hrg_jual'];
     if (!empty($data)) {
 ?>
         <script type="text/javascript">
@@ -42,7 +45,7 @@ if (isset($_POST['tambah'])) {
     }
 
     if ($sisa > 0) {
-        $input = "INSERT INTO  jual  VALUES(' ','$id','$jenis','$nama','$jumlah','$satuan','$total','$tanggal')";
+        $input = "INSERT INTO  jual  VALUES(' ','$id','$jumlah','$tanggal','$id_user','$id_trx')";
         $test = $koneksi->query($input);
         # credirect ke page index
         header("location:Transaksi.php");

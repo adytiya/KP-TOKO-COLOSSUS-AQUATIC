@@ -4,8 +4,3 @@ include 'koneksi.php';
 $code = "SELECT MAX(jual.id_trx) AS maxid FROM jual INNER JOIN transaksi ON transaksi.id_trx=jual.id_trx";
 $sql = mysqli_query($koneksi, $code);
 $data = mysqli_fetch_array($sql);
-$kode = $data['maxid'];
-$no = (int) substr($kode, 3, 3);
-$no++;
-$ket = "TRX";
-$kodeauto = $ket . sprintf("%03s", $no);

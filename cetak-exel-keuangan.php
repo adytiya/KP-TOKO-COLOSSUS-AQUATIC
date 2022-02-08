@@ -4,10 +4,10 @@ include 'head.php';
 include "koneksi.php";
 ?>
 
-<body id="page-top">
+<body>
     <?php
     header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=Data Laporan Transaksi.xls");
+    header("Content-Disposition: attachment; filename=Laporan keuangan.xls");
     ?>
     <!-- Main Content -->
     <div id="content">
@@ -31,9 +31,9 @@ include "koneksi.php";
                         if (!empty($tglawal)) {
                         ?>
                             <center>
-                                <h2>DAFTAR LAPORAN TRANSAKSI</h2>
+                                <h2>DAFTAR LAPORAN KEUNTUNGAN TRANSAKSI </h2>
                                 <hr><br>
-                                <h4>PERIODE TRANSAKSI <b><?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></b></h4>
+                                <h4>PERIODE TANGGAL<b><?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></b></h4>
                                 </br>
                             </center>
 
@@ -41,7 +41,7 @@ include "koneksi.php";
                         } else {
                         ?>
                             <center>
-                                <h2>DAFTAR LAPORAN TRANSAKSI PESANAN </h2>
+                                <h2>DAFTAR LAPORAN KEUNTUNGAN TRANSAKSI </h2>
                             </center>
                             <hr>
                         <?php
@@ -49,49 +49,45 @@ include "koneksi.php";
                         ?>
 
                         <div class="table-responsive">
-                            <table class="table " border="1" width="100%" cellspacing="0">
+                            <table border="1" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>ID_transaksi</th>
-                                        <th>Jumlah</th>
-                                        <th>Total</th>
-                                        <th>Bayar</th>
-                                        <th>kembalian</th>
-                                        <th>Admin</th>
+                                        <th>Jumlah keuntungan Tiap Transaksi</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php
-                                    $SQL = "SELECT * FROM transaksi INNER JOIN user on user.id_user=transaksi.id_user $sqlperiode";
+                                    $SQL = "SELECT  transaksi.id_trx,transaksi.tgl_trx,SUM((jual.jml_jual*stok.hrg_jual)-(jual.jml_jual*stok.hrg_beli))as keuntungan FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN transaksi on transaksi.id_trx=jual.id_trx $sqlperiode GROUP BY transaksi.id_trx";
                                     $data = mysqli_query($koneksi, $SQL);
                                     $no = 1;
                                     $jumlahtotal = 0;
-                                    $jumlahtotal2 = 0;
                                     while ($user_data = mysqli_fetch_array($data)) {
-                                        $jumlahtotal += $user_data['total'];
+                                        $jumlahtotal += $user_data['keuntungan'];
                                     ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
                                             <td><?php echo $user_data['tgl_trx']; ?></td>
                                             <td><?php echo $user_data['id_trx']; ?></td>
-                                            <td><?php echo $user_data['jml_total']; ?></td>
-                                            <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
-                                            <td>Rp.<?= number_format($user_data['bayar'], 0, ',', '.'); ?></td>
-                                            <td>Rp.<?= number_format($user_data['kembalian'], 0, ',', '.'); ?></td>
-                                            <td><?php echo $user_data['nama_user']; ?></td>
+                                            <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
+
                                         </tr>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                                 <tr align="left">
-                                    <th><strong>Total Transaksi </strong></th>
+                                    <th><strong></strong></th>
+                                    <th><strong></strong></th>
+                                    <th><strong>Total keseluruhan </strong></th>
                                     <th>Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></th>
-                                </tr>
 
+
+
+                                </tr>
                             </table>
                         </div>
                 </div>

@@ -34,11 +34,11 @@ include 'view.php';
                 if (isset($_POST['btntampilkan'])) {
                     $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
                     $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
-                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                    $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                 } else {
                     $awaltgl = "01-" . date('m-Y');
                     $akhirtgl = date('d-m-Y');
-                    $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                    $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                 }
                 ?>
                 <div class="card-header py-3">
@@ -77,16 +77,15 @@ include 'view.php';
 
                             <tbody>
                                 <?php
-                                $SQL = "SELECT id_trx,SUM(total-harga_beli) as keuntungan,total,admin,tanggal FROM nota INNER JOIN stok ON stok.id_stok=nota.id_stok $sqlperiode GROUP by id_trx ";
+                                $SQL = "SELECT  transaksi.id_trx,transaksi.tgl_trx,SUM((jual.jml_jual*stok.hrg_jual)-(jual.jml_jual*stok.hrg_beli))as keuntungan FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN transaksi on transaksi.id_trx=jual.id_trx $sqlperiode GROUP BY transaksi.id_trx";
                                 $data = mysqli_query($koneksi, $SQL);
-                                $jumlahtotal = 0;
                                 $no = 1;
                                 while ($user_data = mysqli_fetch_array($data)) {
-                                    $jumlahtotal += $user_data['keuntungan'];
+
                                 ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
-                                        <td><?php echo $user_data['tanggal']; ?></td>
+                                        <td><?php echo $user_data['tgl_trx']; ?></td>
                                         <td><?php echo $user_data['id_trx']; ?></td>
                                         <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
 
@@ -96,9 +95,8 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-                        <div>
-                            <h3> Total keseluruhan = Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></h3>
-                        </div>
+
+                        <a href="cetak-exel-keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Export Exel</a>
                         <a href="print_keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Cetak Laporan</a>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ $password=$_GET['password'];
 $level=$_GET['level'];
 
 //menginput data ke database 
-$query=mysqli_query($koneksi,"UPDATE  user SET nama='$nama' ,username='$username' ,pass='$password' ,level='$level'  WHERE id_user='$id' ");
+$query=mysqli_query($koneksi,"UPDATE  user SET nama_user='$nama' ,username='$username' ,password='$password' ,level='$level'  WHERE id_user='$id' ");
 if ($query) {
  # credirect ke page index
  header("location:user.php"); 
@@ -18,5 +18,3 @@ if ($query) {
 else{
  echo "ERROR, data gagal diupdate". mysqli_error($koneksi);
 }
-
- ?>

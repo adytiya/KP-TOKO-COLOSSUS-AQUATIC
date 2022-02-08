@@ -16,7 +16,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="./index.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -30,22 +30,22 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <?php
-        if ($_SESSION['level'] == "super_admin") {  ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Master</span>
-                </a>
-                <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="stok.php">data barang </a>
-                        <a class="collapse-item" href="user.php">User </a>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Master</span>
+            </a>
+            <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
 
-                    </div>
+                    <a class="collapse-item" href="././admin/stok/stok.php">Stok </a>
+                    <?php
+                    if ($_SESSION['level'] == "super_admin") {  ?>
+                        <a class="collapse-item" href="user.php">User </a>
+                    <?php } ?>
                 </div>
-            </li>
-        <?php } ?>
+            </div>
+        </li>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="transaksi">
@@ -55,10 +55,7 @@
             <div id="transaksi" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="Transaksi.php">Transaksi </a>
-                    <?php
-                    if ($_SESSION['level'] == "super_admin") {  ?>
-                        <a class="collapse-item" href="retrun.php">Retrun</a>
-                    <?php } ?>
+
                 </div>
             </div>
 
@@ -79,18 +76,8 @@
             </a>
             <div id="laporan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <?php
-                    if ($_SESSION['level'] == "admin") {  ?>
-                        <a class="collapse-item" href="laporan.php">Laporan Transaksi </a>
-                    <?php } ?>
-                    <?php
-                    if ($_SESSION['level'] == "super_admin") {  ?>
-                        <a class="collapse-item" href="laporan2.php">Laporan Transaksi </a>
-                    <?php } ?>
-                    <?php
-                    if ($_SESSION['level'] == "super_admin") {  ?>
-                        <a class="collapse-item" href="laporan_keuangan.php">Laporan keuangan </a>
-                    <?php } ?>
+                    <a class="collapse-item" href="laporan.php">Data Laporan </a>
+
                 </div>
             </div>
 

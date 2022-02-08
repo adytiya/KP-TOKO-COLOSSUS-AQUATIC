@@ -21,14 +21,14 @@ include 'view.php';
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                <h1 class="h3 d-none d-sm-inline-block ">Selamat Datang
+                <h1 class="h3 mb-0 text-gray-800">Selamat Datang
                     <?= $_SESSION['nama']; ?></h1>
+                </h1>
+
             </div>
 
             <!-- Content Row -->
             <div class="row">
-
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -105,11 +105,11 @@ include 'view.php';
                         if (isset($_POST['btntampilkan'])) {
                             $tglawal = isset($_POST['txttglawal']) ? $_POST['txttglawal'] : "01-" . date('m-Y');
                             $tglakhir = isset($_POST['txttglakhir']) ? $_POST['txttglakhir'] : date('d-m-Y');
-                            $sqlperiode = "WHERE nota.tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                            $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                         } else {
                             $awaltgl = "01-" . date('m-Y');
                             $akhirtgl = date('d-m-Y');
-                            $sqlperiode = "WHERE nota.tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+                            $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
                         }
                         ?>
                         <div class="card-header py-3">
@@ -139,29 +139,25 @@ include 'view.php';
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>ID_transaksi</th>
-                                            <th>Total</th>
                                             <th>keuntungan</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php
-
-                                        $SQL = "SELECT nota.tanggal,nota.id_trx,transaksi.jumlah,transaksi.total,transaksi.bayar,transaksi.kembali,SUM(nota.total-stok.harga_beli) as keuntungan,  nota.admin FROM nota INNER JOIN stok ON stok.id_stok=nota.id_stok JOIN transaksi ON transaksi.id_trx=nota.id_trx $sqlperiode GROUP by id_trx ";
+                                        $SQL = "SELECT  transaksi.id_trx,transaksi.tgl_trx,SUM((jual.jml_jual*stok.hrg_jual)-(jual.jml_jual*stok.hrg_beli))as keuntungan FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN transaksi on transaksi.id_trx=jual.id_trx $sqlperiode GROUP BY transaksi.id_trx";
                                         $data = mysqli_query($koneksi, $SQL);
                                         $no = 1;
                                         $jumlahtotal = 0;
-                                        $jumlahtotal2 = 0;
                                         while ($user_data = mysqli_fetch_array($data)) {
                                             $jumlahtotal += $user_data['keuntungan'];
-                                            $jumlahtotal2 += $user_data['keuntungan'];
                                         ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><?php echo $user_data['tanggal']; ?></td>
+                                                <td><?php echo $user_data['tgl_trx']; ?></td>
                                                 <td><?php echo $user_data['id_trx']; ?></td>
-                                                <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
                                                 <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
+
                                             </tr>
                                         <?php
                                         }
@@ -220,14 +216,14 @@ include 'view.php';
                                     <tbody>
                                         <?php
                                         include 'koneksi.php';
-                                        $code9 = "SELECT nama_stok,SUM(jumlah) as jumlah FROM `nota` GROUP BY nama_stok ORDER by jumlah DESC";
+                                        $code9 = "SELECT stok.nama_stk,sum(jual.jml_jual) as jumlah  from jual INNER JOIN stok on stok.id_stk=jual.id_stk GROUP BY nama_stk order by jumlah DESC";
                                         $data = mysqli_query($koneksi, $code9);
                                         $no = 1;
                                         while ($user_data = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
                                                 <th><?php echo $no++ ?></th>
-                                                <th><?php echo $user_data['nama_stok'] ?></th>
+                                                <th><?php echo $user_data['nama_stk'] ?></th>
                                                 <th><?php echo $user_data['jumlah'] ?></th>
                                             </tr>
                                         <?php
@@ -261,14 +257,14 @@ include 'view.php';
                                     <tbody>
                                         <?php
                                         include 'koneksi.php';
-                                        $code9 = "SELECT nama_stok,stok FROM stok WHERE stok <= 2";
+                                        $code9 = "SELECT nama_stk,stok FROM stok WHERE stok <= 5";
                                         $data = mysqli_query($koneksi, $code9);
                                         $no = 1;
                                         while ($user_data = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
                                                 <th><?php echo $no++ ?></th>
-                                                <th><?php echo $user_data['nama_stok'] ?></th>
+                                                <th><?php echo $user_data['nama_stk'] ?></th>
                                                 <th><?php echo $user_data['stok'] ?></th>
                                             </tr>
                                         <?php
@@ -330,7 +326,7 @@ include 'view.php';
             type: 'doughnut',
             data: {
                 labels: [<?php while ($p = mysqli_fetch_array($sql9)) {
-                                echo '"' . $p['nama_stok'] . '",';
+                                echo '"' . $p['nama_stk'] . '",';
                             } ?>],
                 datasets: [{
                     data: [<?php while ($p = mysqli_fetch_array($sql10)) {

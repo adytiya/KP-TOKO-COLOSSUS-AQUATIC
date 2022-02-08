@@ -36,35 +36,36 @@ include 'view.php';
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Tanggal</th>
                                     <th>ID_transaksi</th>
-                                    <th>Jenis</th>
-                                    <th>Nama stok</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
-                                    <th>Tanggal</th>
+                                    <th>kembali</th>
                                     <th>Admin</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php
-                                $no = 1;
 
-                                $data = mysqli_query($koneksi, "SELECT * FROM nota ");
+                                $SQL = "SELECT transaksi.tgl_trx ,transaksi.id_trx, transaksi.id_trx,transaksi.total ,transaksi.bayar,transaksi.kembalian,user.nama_user FROM transaksi INNER JOIN user on user.id_user=transaksi.id_user";
+                                $data = mysqli_query($koneksi, $SQL);
+                                $no = 1;
+                                $jumlahtotal = 0;
+                                $jumlahtotal2 = 0;
                                 while ($user_data = mysqli_fetch_array($data)) {
+
                                 ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
+                                        <td><?php echo $user_data['tgl_trx']; ?></td>
                                         <td><?php echo $user_data['id_trx']; ?></td>
-                                        <td><?php echo $user_data['jenis']; ?></td>
-                                        <td><?php echo $user_data['nama_stok']; ?></td>
-                                        <td><?php echo $user_data['jumlah']; ?></td>
                                         <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
-                                        <td><?php echo $user_data['tanggal']; ?></td>
-                                        <td><?php echo $user_data['admin']; ?></td>
+                                        <td>Rp.<?= number_format($user_data['bayar'], 0, ',', '.'); ?></td>
+                                        <td>Rp.<?= number_format($user_data['kembalian'], 0, ',', '.'); ?></td>
+                                        <td><?php echo $user_data['nama_user']; ?></td>
+
                                     </tr>
-
-
                                 <?php
                                 }
                                 ?>

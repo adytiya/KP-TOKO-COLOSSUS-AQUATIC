@@ -17,7 +17,7 @@ include "koneksi.php";
 
             $tglawal = isset($_GET['awal']) ? $_GET['awal'] : "01-" . date('m-Y');
             $tglakhir = isset($_GET['akhir']) ? $_GET['akhir'] : date('d-m-Y');
-            $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+            $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
 
             ?>
             <!-- DataTales Example -->
@@ -58,7 +58,7 @@ include "koneksi.php";
 
                                 <tbody>
                                     <?php
-                                    $SQL = "SELECT id_trx,SUM(total-harga_beli) as keuntungan,total,admin,tanggal FROM nota INNER JOIN stok ON stok.id_stok=nota.id_stok $sqlperiode GROUP by id_trx ";
+                                    $SQL = "SELECT  transaksi.id_trx,transaksi.tgl_trx,SUM((jual.jml_jual*stok.hrg_jual)-(jual.jml_jual*stok.hrg_beli))as keuntungan FROM jual INNER JOIN stok on stok.id_stk=jual.id_stk JOIN transaksi on transaksi.id_trx=jual.id_trx $sqlperiode GROUP BY transaksi.id_trx";
                                     $data = mysqli_query($koneksi, $SQL);
                                     $no = 1;
                                     $jumlahtotal = 0;
@@ -67,7 +67,7 @@ include "koneksi.php";
                                     ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><?php echo $user_data['tanggal']; ?></td>
+                                            <td><?php echo $user_data['tgl_trx']; ?></td>
                                             <td><?php echo $user_data['id_trx']; ?></td>
                                             <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
 
@@ -75,26 +75,25 @@ include "koneksi.php";
                                     <?php
                                     }
                                     ?>
-                    </form>
-                    </tbody>
-                    <tr align="left">
-                        <th><strong></strong></th>
-                        <th><strong></strong></th>
-                        <th><strong>Total keseluruhan </strong></th>
-                        <th>Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></th>
+                                </tbody>
+                                <tr align="left">
+                                    <th><strong></strong></th>
+                                    <th><strong></strong></th>
+                                    <th><strong>Total keseluruhan </strong></th>
+                                    <th>Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></th>
 
 
 
-                    </tr>
-                    </table>
+                                </tr>
+                            </table>
+                        </div>
                 </div>
             </div>
+
+
+
         </div>
-
-
-
-    </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
     </div>
 </body>

@@ -1,36 +1,35 @@
 <?php
-require 'cek-sesi.php';
-include 'head.php';
+require "/xampp/htdocs/toko-collosus/session.php";
+require "/xampp/htdocs/toko-collosus/admin/template/head.php";
+require "/xampp/htdocs/toko-collosus/koneksi.php";
 ?>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <?php
-    require 'koneksi.php';
-    require('sidebar.php'); ?>
+    require "/xampp/htdocs/toko-collosus/admin/template/sidebar.php"; ?>
     <!-- Main Content -->
     <div id="content">
 
         <!-- Topbar -->
-        <?php require('navbar.php'); ?>
+        <?php require ('/xampp/htdocs/toko-collosus/admin/template/navbar.php'); ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Data Barang</h1>
+            <h1>Data Stok </h1>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a href="tambah-data-stok.php" class="btn btn-primary"> Tambah Data</a>
+                    <a href="#.php" class="btn btn-primary"> Tambah Data</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>no</th>
+                                    <th>No</th>
                                     <th>Jenis</th>
                                     <th>Nama</th>
                                     <th>Harga Beli</th>
@@ -44,11 +43,11 @@ include 'head.php';
                             </thead>
                             <tbody>
                                 <?php
-                                include 'koneksi.php';
-                                $code = "SELECT *FROM stok INNER JOIN jenis on jenis.id_jenis=stok.id_jenis join satuan on satuan.id_satuan=stok.id_satuan";
+                                $code= "SELECT * FROM stok INNER JOIN jenis on stok.id_jenis = jenis.id_jenis INNER JOIN satuan on stok.id_satuan = satuan.id_satuan";
                                 $data = mysqli_query($koneksi, $code);
                                 $no = 1;
                                 while ($user_data = mysqli_fetch_array($data)) {
+                                    
                                 ?>
                                     <tr>
                                         <th><?php echo $no++; ?></th>
@@ -60,8 +59,8 @@ include 'head.php';
                                         <th><?php echo $user_data['nama_satuan'] ?></th>
                                         <th><?php echo $user_data['tgl_input_stok'] ?></th>
                                         <th>
-                                            <a href="edit-data-stok.php?id=<?= $user_data['id_stk']; ?>" class="btn btn-success">Edit</a>
-                                            <a href="delete-stok.php?id=<?= $user_data['id_stk']; ?>" class="btn btn-danger">Delete</a>
+                                            <a href="#" class="btn btn-success">Edit</a>
+                                            <a href="#" class="btn btn-danger">Delete</a>
                                         </th>
                                     </tr>
                                 <?php
@@ -82,7 +81,7 @@ include 'head.php';
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <?php require 'footer.php' ?>
+    <?php require '/xampp/htdocs/toko-collosus/admin/template/footer.php' ?>
     <!-- End of Footer -->
 
     </div>
@@ -97,23 +96,23 @@ include 'head.php';
     </a>
 
     <!-- Logout Modal-->
-    <?php require 'logout-modal.php' ?>
+    <?php require ('../module/logout/logout-modal.php'); ?>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
 
 </body>
 

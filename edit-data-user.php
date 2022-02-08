@@ -33,13 +33,13 @@ include 'head.php';
                     <div class="row mb-3">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="id" value="<?php echo $row['id_user'] ?>">
+                            <input type="text" class="form-control" readonly="readonly" name="id" value="<?php echo $row['id_user'] ?>">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama']; ?>">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama_user']; ?>">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -51,16 +51,22 @@ include 'head.php';
                     <div class="row mb-3">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">password</label>
                         <div class="col-sm-10">
-                            <input type="varchar" class="form-control" id="password" name="password" value="<?php echo $row['pass']; ?>">
+                            <input type="varchar" class="form-control" id="password" name="password" value="<?php echo $row['password']; ?>">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Level</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="level">
-                                <option selected><?php echo $row['level']; ?></option>
-                                <option value="kasir">Kasir</option>
-                                <option value="super_admin">Super Admin</option>
+                                <option selected value="<?php echo $row['level']; ?>"><?php echo $row['level']; ?></option>
+                                <?php
+                                $query_edit = mysqli_query($koneksi, "SELECT * FROM user");
+                                while ($row = mysqli_fetch_array($query_edit)) {
+                                ?>
+                                    <option selected value="<?php echo $row['level']; ?>"><?php echo $row['level']; ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

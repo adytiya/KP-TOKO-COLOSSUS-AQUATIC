@@ -17,7 +17,7 @@ include "koneksi.php";
 
             $tglawal = isset($_GET['awal']) ? $_GET['awal'] : "01-" . date('m-Y');
             $tglakhir = isset($_GET['akhir']) ? $_GET['akhir'] : date('d-m-Y');
-            $sqlperiode = "WHERE nota.tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+            $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
 
             ?>
             <!-- DataTales Example -->
@@ -56,58 +56,45 @@ include "koneksi.php";
                                         <th>Total</th>
                                         <th>Bayar</th>
                                         <th>kembalian</th>
-                                        <th>keuntungan</th>
+
                                         <th>Admin</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php
-
-                                    $SQL = "SELECT nota.tanggal,nota.id_trx,transaksi.jumlah,transaksi.total,transaksi.bayar,transaksi.kembali,SUM(nota.total-stok.harga_beli) as keuntungan,  nota.admin FROM nota INNER JOIN stok ON stok.id_stok=nota.id_stok JOIN transaksi ON transaksi.id_trx=nota.id_trx $sqlperiode GROUP by id_trx ";
+                                    $SQL = "SELECT * FROM transaksi INNER JOIN user on user.id_user=transaksi.id_user $sqlperiode";
                                     $data = mysqli_query($koneksi, $SQL);
                                     $no = 1;
                                     $jumlahtotal = 0;
                                     $jumlahtotal2 = 0;
                                     while ($user_data = mysqli_fetch_array($data)) {
-                                        $jumlahtotal += $user_data['total'];
-                                        $jumlahtotal2 += $user_data['keuntungan'];
+
                                     ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><?php echo $user_data['tanggal']; ?></td>
+                                            <td><?php echo $user_data['tgl_trx']; ?></td>
                                             <td><?php echo $user_data['id_trx']; ?></td>
-                                            <td><?php echo $user_data['jumlah']; ?></td>
+                                            <td><?php echo $user_data['jml_total']; ?></td>
                                             <td>Rp.<?= number_format($user_data['total'], 0, ',', '.'); ?></td>
                                             <td>Rp.<?= number_format($user_data['bayar'], 0, ',', '.'); ?></td>
-                                            <td>Rp.<?= number_format($user_data['kembali'], 0, ',', '.'); ?></td>
-                                            <td>Rp.<?= number_format($user_data['keuntungan'], 0, ',', '.'); ?></td>
-                                            <td><?php echo $user_data['admin']; ?></td>
+                                            <td>Rp.<?= number_format($user_data['kembalian'], 0, ',', '.'); ?></td>
+                                            <td><?php echo $user_data['nama_user']; ?></td>
                                         </tr>
-
-
                                     <?php
                                     }
                                     ?>
-                    </form>
-                    </tbody>
-                    <tr align="left">
-                        <th><strong>Total Transaksi </strong></th>
-                        <th>Rp.<?= number_format($jumlahtotal, 0, ',', '.'); ?></th>
-                    </tr>
-                    <tr align="left">
-                        <th><strong>Total Keuntungan </strong></th>
-                        <th>Rp.<?= number_format($jumlahtotal2, 0, ',', '.'); ?></th>
-                    </tr>
-                    </table>
+                                </tbody>
+
+                            </table>
+                        </div>
                 </div>
             </div>
+
+
+
         </div>
-
-
-
-    </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
     </div>
 </body>

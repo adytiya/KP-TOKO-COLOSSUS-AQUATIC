@@ -7,81 +7,81 @@ include 'head.php';
 
     <!-- Page Wrapper -->
     <?php
-     require('koneksi.php');
+    require('koneksi.php');
     require('sidebar.php'); ?>
-            <!-- Main Content -->
-            <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-                <!-- Topbar -->
-                <?php require('navbar.php'); ?>
-                <!-- End of Topbar -->
+        <!-- Topbar -->
+        <?php require('navbar.php'); ?>
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                 <div class="container-fluid">
-              	 <h1>Data User</h1>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <h1>Data User</h1>
 
-               
-                    
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                        	<a href="tambah-data-user.php" class="btn btn-primary"> Tambah Data</a>
-                            
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>Nama</th>
-                                            <th>Username</th>
-                                            <th>Password</th>
-                                            <th>Level</th>
-                                            <th>Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <?php 
-                                    include 'koneksi.php';
-                                   
-                                    $data=mysqli_query($koneksi,"SELECT * FROM user ");
-                                    while($data_user=mysqli_fetch_array($data)){
-                                     ?>
-                                        <tr>
-                                        
-                                            <th><?php echo $data_user['id_user']; ?></th>
-                                            <th><?php echo $data_user['nama']; ?></th>
-                                            <th><?php echo $data_user['username']; ?></th>
-                                            <th><?php echo $data_user['pass']; ?></th>
-                                            <th><?php echo $data_user['level']; ?></th>
-                                             <th>                                      		
 
-                                             <a href="edit-data-user.php?id=<?=$data_user['id_user'];?>"class="btn btn-success">Edit</a>
-                                        	 <a href="delete-user.php?id=<?=$data_user['id_user']; ?>" class="btn btn-danger">Delete</a>  
-                                        	</th>
-                                        	
-                                        </tr>
-                                        <?php 
-                                        } 
-                                        ?>
-                                   </tbody>     
-                                </table>
-                            </div>
-                        </div>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <a href="tambah-data-user.php" class="btn btn-primary"> Tambah Data</a>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>no</th>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Level</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            include 'koneksi.php';
+                            $code = "SELECT*FROM user";
+                            $data = mysqli_query($koneksi, $code);
+                            while ($data_user = mysqli_fetch_array($data)) {
+                            ?>
+                                <tr>
+
+                                    <th><?php echo $data_user['id_user']; ?></th>
+                                    <th><?php echo $data_user['nama_user']; ?></th>
+                                    <th><?php echo $data_user['username']; ?></th>
+                                    <th><?php echo $data_user['password']; ?></th>
+                                    <th><?php echo $data_user['level']; ?></th>
+                                    <th>
+
+                                        <a href="edit-data-user.php?id=<?= $data_user['id_user']; ?>" class="btn btn-success">Edit</a>
+                                        <a href="delete-user.php?id=<?= $data_user['id_user']; ?>" class="btn btn-danger">Delete</a>
+                                    </th>
+
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <?php require 'footer.php' ?>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <?php require 'footer.php' ?>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
