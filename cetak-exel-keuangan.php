@@ -21,6 +21,8 @@ include "koneksi.php";
             $tglawal = isset($_GET['awal']) ? $_GET['awal'] : "01-" . date('m-Y');
             $tglakhir = isset($_GET['akhir']) ? $_GET['akhir'] : date('d-m-Y');
             $sqlperiode = "WHERE transaksi.tgl_trx BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+            $sqlperiode = "WHERE tanggal BETWEEN '" . $tglawal . "' AND '" . $tglakhir . "' ";
+
 
             ?>
             <!-- DataTales Example -->

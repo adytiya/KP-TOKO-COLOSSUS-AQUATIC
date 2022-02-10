@@ -95,7 +95,6 @@ include 'view.php';
                                 ?>
                             </tbody>
                         </table>
-
                         <a href="cetak-exel-keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Export Exel</a>
                         <a href="print_keuangan.php?awal=<?php echo $tglawal; ?> &&akhir=<?php echo $tglakhir; ?>" target="_blank" alt="Edit Data" class="btn btn-primary">Cetak Laporan</a>
                     </div>
